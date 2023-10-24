@@ -19,35 +19,35 @@ class _LoginViewState extends State<LoginView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Login'),
+        title: const Text('Login'),
       ),
       
-      backgroundColor: Color.fromARGB(255, 255, 255, 255),
+      backgroundColor: const Color.fromARGB(255, 255, 255, 255),
       body: Padding(
-        padding: EdgeInsets.all(28.0),
+        padding: const EdgeInsets.all(28.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
-            SizedBox(height: 50),
-            Icon(
+            const SizedBox(height: 50),
+            const Icon(
               Icons.account_circle,
               size: 180,
               color: Colors.blue,
             ),
-            SizedBox(height: 30),
+            const SizedBox(height: 30),
             TextField(
               controller: _emailController,
-              decoration: InputDecoration(labelText: 'Email'),
+              decoration: const InputDecoration(labelText: 'Email'),
               keyboardType: TextInputType.emailAddress,
             ),
-            SizedBox(height: 30),
+            const SizedBox(height: 30),
             TextField(
               controller: _passwordController,
-              decoration: InputDecoration(labelText: 'Senha'),
+              decoration: const InputDecoration(labelText: 'Senha'),
               textAlign: TextAlign.left,
               obscureText: true,
             ),
-            SizedBox(height: 30),
+            const SizedBox(height: 30),
             ElevatedButton(
               onPressed: () {
                 String email = _emailController.text;
@@ -59,11 +59,11 @@ class _LoginViewState extends State<LoginView> {
                     context: context,
                     builder: (BuildContext context) {
                       return AlertDialog(
-                        title: Text('Erro'),
-                        content: Text('Por favor, insira uma senha.'),
+                        title: const Text('Erro'),
+                        content: const Text('Por favor, insira uma senha.'),
                         actions: <Widget>[
                           TextButton(
-                            child: Text('OK'),
+                            child: const Text('OK'),
                             onPressed: () {
                               Navigator.of(context).pop();
                             },
@@ -82,11 +82,11 @@ class _LoginViewState extends State<LoginView> {
                     context: context,
                     builder: (BuildContext context) {
                       return AlertDialog(
-                        title: Text('Erro'),
-                        content: Text('Por favor, insira um email válido.'),
+                        title: const Text('Erro'),
+                        content: const Text('Por favor, insira um email válido.'),
                         actions: <Widget>[
                           TextButton(
-                            child: Text('OK'),
+                            child: const Text('OK'),
                             onPressed: () {
                               Navigator.of(context).pop();
                             },
@@ -97,9 +97,9 @@ class _LoginViewState extends State<LoginView> {
                   );
                 }
               },
-              child: Text('Login'),
+              child: const Text('Login'),
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             // Adicione um botão "Esqueceu a senha?"
             TextButton(
               onPressed: () {
@@ -108,7 +108,7 @@ class _LoginViewState extends State<LoginView> {
                   return EsqueceuSenhaView();
                 }));
               },
-              child: Text('Esqueceu a senha?'),
+              child: const Text('Esqueceu a senha?'),
             ),
           ],
         ),
@@ -117,4 +117,4 @@ class _LoginViewState extends State<LoginView> {
   }
 }
 
-void main() => runApp(MaterialApp(home: LoginView()));
+void main() => runApp(const MaterialApp(home: LoginView()));

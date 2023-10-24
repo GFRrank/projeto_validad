@@ -27,6 +27,7 @@ class HubScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text('Hub Screen'),
+        
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -51,6 +52,14 @@ class CadastroFuncView extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text('Cadastro de Funcionários'),
+        // Adicione um botão de volta à barra de aplicativos
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          onPressed: () {
+            // Navegar de volta à tela anterior (HubScreen)
+            Navigator.pop(context);
+          },
+        ),
       ),
       body: Center(
         child: Text('Conteúdo para o cadastro de funcionários aqui.'),
