@@ -5,6 +5,7 @@ import 'package:projeto_valid/view/EsqueceuSenha_view.dart';
 import 'package:projeto_valid/view/Cadastro_Func_view.dart';
 import 'package:projeto_valid/view/HubScreen_view.dart';
 import 'package:projeto_valid/view/Inicio_view.dart';
+import 'package:projeto_valid/view/Cadastro_Esto_view.dart';
 
 
 
@@ -33,6 +34,7 @@ class MyApp extends StatelessWidget {
         'esqueceu_senha': (context) => EsqueceuSenhaView(), // Adicione a rota para a tela EsqueceuSenhaView
         'hub_screen': (context) => const HubScreen(), // Adicione a rota para a tela HubScreenView
         'cadastro_func': (context) => CadastroFunc(), // Adicione esta linha
+        'cadastro_estoque': (context) =>  CadastroEstoque(), // Adicione esta linha
         
       },
 

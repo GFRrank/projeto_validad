@@ -48,29 +48,34 @@ class Inicio extends StatelessWidget {
             ),
           ),
           Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Container(
-                  height: 200.0, // Defina a altura desejada aqui
-                  width: 200.0, // Defina a largura desejada aqui
-                  decoration: const BoxDecoration(
-                    image: DecorationImage(
-                      image: AssetImage('assets/gfrlogo.png.'), 
-                      fit: BoxFit.cover,
+            child: Padding(
+              padding: const EdgeInsets.only(top: 1 , left: 40 , right: 40),
+              child: Column(
+              
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget>[
+                  Container(
+                    height: 300.0, // Defina a altura desejada aqui
+                    width: 300.0, // Defina a largura desejada aqui
+                    decoration: const BoxDecoration(
+                      image: DecorationImage(
+                        image: AssetImage('assets/gfrlogo.png.'), 
+                        fit: BoxFit.cover,
+                      ),
                     ),
                   ),
-                ),
-                Padding(
-                  padding: EdgeInsets.only(top: 5.0),
-                  child: ElevatedButton(
-                    child: const Text('Iniciar'),
-                    onPressed: () {
-                      Navigator.pushNamed(context, 'login');
-                    },
+                  Padding(
+                    padding: EdgeInsets.only(top: 3.0),
+                    child: ElevatedButton(
+                      child: const Text('Iniciar'),
+                      onPressed: () {
+                        Navigator.pushNamed(context, 'login');
+                      },
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ],
