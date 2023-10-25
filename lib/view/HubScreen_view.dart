@@ -1,68 +1,57 @@
 import 'package:flutter/material.dart';
 import 'package:projeto_valid/view/Login_view.dart';
 import 'package:projeto_valid/view/EsqueceuSenha_view.dart';
-import 'package:projeto_valid/view/CadastroFunc_view.dart';
+import 'package:projeto_valid/view/Cadastro_Func_view.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: 'hub_screen', // Defina a rota inicial como 'hub_screen'
+      initialRoute: 'hub_screen',
       routes: {
-        'login': (context) => LoginView(),
+        'login': (context) => const LoginView(),
         'esqueceu_senha': (context) => EsqueceuSenhaView(),
-        'hub_screen': (context) => HubScreen(),
-        'cadastro_func': (context) => CadastroFuncView(), // Adicione a rota para CadastroFunc
+        'hub_screen': (context) => const HubScreen(),
+        'cadastro_func': (context) => CadastroFunc(), // Adicione esta linha
+      
       },
     );
   }
 }
 
 class HubScreen extends StatelessWidget {
+  const HubScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Hub Screen'),
-        
+        title: const Text('Hub Screen'),
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          ElevatedButton(
-            onPressed: () {
-              // Navegar para a tela de adicionar foto
-              Navigator.pushNamed(context, 'cadastro_func'); // Use o nome da rota para navegar
-            },
-            child: Text('Cadastrar Funcionários'),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-
-class CadastroFuncView extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Cadastro de Funcionários'),
-        // Adicione um botão de volta à barra de aplicativos
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back),
-          onPressed: () {
-            // Navegar de volta à tela anterior (HubScreen)
-            Navigator.pop(context);
-          },
+      drawer: Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: <Widget>[
+            const DrawerHeader(
+              decoration: BoxDecoration(
+                color: Colors.blue,
+              ),
+              child: Text('Menu'),
+            ),
+           
+            ListTile(
+              title: const Text('Cadastro Funcionários'),
+              onTap: () {
+                Navigator.pushNamed(context, 'cadastro_func');
+              },
+            ),
+          ],
         ),
-      ),
-      body: Center(
-        child: Text('Conteúdo para o cadastro de funcionários aqui.'),
       ),
     );
   }
