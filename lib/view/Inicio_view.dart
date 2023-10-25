@@ -30,50 +30,49 @@ class Inicio extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Tela Inicial'),
+        title: const Text(
+          'Tela Inicial',
+          style: TextStyle(
+            color: Colors.white,
+          ),
+        ),
+        backgroundColor: Color.fromARGB(255, 22, 49, 22),
       ),
-      body: Stack(
-        children: <Widget>[
-          DecoratedBox(
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                begin: FractionalOffset.topCenter,
-                end: FractionalOffset.bottomCenter,
-                colors: [
-                  Colors.purple.withOpacity(0.5),
-                  Colors.deepPurple.withOpacity(0.5),
-                  Colors.blue[900]!.withOpacity(0.5),
-                ],
+      body: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [
+              Color.fromARGB(255, 0, 117, 35).withOpacity(1.0),
+              const Color.fromARGB(255, 0, 0, 0).withOpacity(1.0),
+              Color.fromARGB(255, 0, 255, 42)!.withOpacity(1.0),
+            ],
+          ),
+        ),
+        padding: EdgeInsets.only(
+          top: 200,
+          left: 40,
+          right: 40,
+        ),
+        child: ListView(
+          children: [
+            SizedBox(
+              width: 200,
+              height: 200,
+              child: Image.asset(color: Colors.white, "assets/gfrlogo.png"),
+            ),
+            Padding(
+              padding: EdgeInsets.only(top: 5.0),
+              child: ElevatedButton(
+                child: const Text('Iniciar'),
+                onPressed: () {
+                  Navigator.pushNamed(context, 'login');
+                },
               ),
             ),
-          ),
-          Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Container(
-                  height: 200.0, // Defina a altura desejada aqui
-                  width: 200.0, // Defina a largura desejada aqui
-                  decoration: const BoxDecoration(
-                    image: DecorationImage(
-                      image: AssetImage('assets/gfrlogo.png.'), 
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.only(top: 5.0),
-                  child: ElevatedButton(
-                    child: const Text('Iniciar'),
-                    onPressed: () {
-                      Navigator.pushNamed(context, 'login');
-                    },
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
