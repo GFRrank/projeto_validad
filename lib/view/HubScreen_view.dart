@@ -18,7 +18,7 @@ class HubScreen extends StatelessWidget {
               width: 200.0,
               decoration: const BoxDecoration(
                 image: DecorationImage(
-                  image: AssetImage('assets/gfrlogo.png'),
+                  image: Image.asset("assets/gfrlogo.png", color: Colors.white),
                   fit: BoxFit.cover,
                 ),
               ),
@@ -55,7 +55,7 @@ class HubScreen extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(width: 10), // Adicione espaço entre a imagem e o texto
-                  Text('Menu', style: TextStyle(fontSize: 40)),
+                  Text('Menu', style: TextStyle(fontSize: 24)),
                 ],
               ),
             ),
