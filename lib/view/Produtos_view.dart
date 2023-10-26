@@ -16,9 +16,15 @@ class Produtos extends StatelessWidget {
         appBar: AppBar(
           bottom: TabBar(
             tabs: [
-              Tab(text: "Rebaixa", icon: Icon(Icons.arrow_downward, color: Colors.red)),
-              Tab(text: "Atenção", icon: Icon(Icons.warning, color: Colors.yellow)),
-              Tab(text: "Seguro", icon: Icon(Icons.check_circle, color: Colors.green)),
+              Tab(
+                  text: "Rebaixa",
+                  icon: Icon(Icons.arrow_downward, color: Colors.red)),
+              Tab(
+                  text: "Atenção",
+                  icon: Icon(Icons.warning, color: Colors.yellow)),
+              Tab(
+                  text: "Seguro",
+                  icon: Icon(Icons.check_circle, color: Colors.green)),
             ],
           ),
           title: Text('Estoque'),
@@ -29,14 +35,20 @@ class Produtos extends StatelessWidget {
               itemCount: 10,
               itemBuilder: (context, index) {
                 return ListTile(
-                  title: Text('Lote - Produto X (Código do produto)', style: TextStyle(color: Colors.red)),
+                  tileColor: Colors.red,
+                  title: Text('Lote - Produto X (Código do produto)',
+                      style: TextStyle(color: Colors.black)),
                   subtitle: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
-                      Text('Loja - Serial da loja', style: TextStyle(color: Colors.red)),
-                      Text('Estoque - Quantidade', style: TextStyle(color: Colors.red)),
-                      Text('Data de validade - Data', style: TextStyle(color: Colors.red)),
-                      Text('Dias Restantes - Dias', style: TextStyle(color: Colors.red)),
+                      Text('Loja - Serial da loja',
+                          style: TextStyle(color: Colors.black)),
+                      Text('Estoque - Quantidade',
+                          style: TextStyle(color: Colors.black)),
+                      Text('Data de validade - Data',
+                          style: TextStyle(color: Colors.black)),
+                      Text('Dias Restantes - Dias',
+                          style: TextStyle(color: Colors.black)),
                     ],
                   ),
                 );
@@ -46,14 +58,20 @@ class Produtos extends StatelessWidget {
               itemCount: 10,
               itemBuilder: (context, index) {
                 return ListTile(
-                  title: Text('Lote - Produto X (Código do produto)', style: TextStyle(color: Colors.yellow)),
+                  tileColor: Colors.yellow,
+                  title: Text('Lote - Produto X (Código do produto)',
+                      style: TextStyle(color: Colors.black)),
                   subtitle: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
-                      Text('Loja - Serial da loja', style: TextStyle(color: Colors.yellow)),
-                      Text('Estoque - Quantidade', style: TextStyle(color: Colors.yellow)),
-                      Text('Data de validade - Data', style: TextStyle(color: Colors.yellow)),
-                      Text('Dias Restantes - Dias', style: TextStyle(color: Colors.yellow)),
+                      Text('Loja - Serial da loja',
+                          style: TextStyle(color: Colors.black)),
+                      Text('Estoque - Quantidade',
+                          style: TextStyle(color: Colors.black)),
+                      Text('Data de validade - Data',
+                          style: TextStyle(color: Colors.black)),
+                      Text('Dias Restantes - Dias',
+                          style: TextStyle(color: Colors.black)),
                     ],
                   ),
                 );
@@ -63,14 +81,20 @@ class Produtos extends StatelessWidget {
               itemCount: 10,
               itemBuilder: (context, index) {
                 return ListTile(
-                  title: Text('Lote - Produto X (Código do produto)', style: TextStyle(color: Colors.green)),
+                  tileColor: Color.fromARGB(255, 4, 255, 0),
+                  title: Text('Lote - Produto X (Código do produto)',
+                      style: TextStyle(color: Colors.black)),
                   subtitle: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
-                      Text('Loja - Serial da loja', style: TextStyle(color: Colors.green)),
-                      Text('Estoque - Quantidade', style: TextStyle(color: Colors.green)),
-                      Text('Data de validade - Data', style: TextStyle(color: Colors.green)),
-                      Text('Dias Restantes - Dias', style: TextStyle(color: Colors.green)),
+                      Text('Loja - Serial da loja',
+                          style: TextStyle(color: Colors.black)),
+                      Text('Estoque - Quantidade',
+                          style: TextStyle(color: Colors.black)),
+                      Text('Data de validade - Data',
+                          style: TextStyle(color: Colors.black)),
+                      Text('Dias Restantes - Dias',
+                          style: TextStyle(color: Colors.black)),
                     ],
                   ),
                 );

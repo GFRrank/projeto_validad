@@ -27,15 +27,6 @@ class Inicio extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text(
-          'Tela Inicial',
-          style: TextStyle(
-            color: Colors.white,
-          ),
-        ),
-        backgroundColor: Color.fromARGB(255, 22, 49, 22),
-      ),
       body: Container(
         decoration: BoxDecoration(
           gradient: LinearGradient(
@@ -59,6 +50,9 @@ class Inicio extends StatelessWidget {
               width: 200,
               height: 200,
               child: Image.asset("assets/gfrlogo.png", color: Colors.white),
+            ),
+            SizedBox(
+              height: 30,
             ),
             Padding(
               padding: EdgeInsets.only(top: 5.0),
