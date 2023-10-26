@@ -34,17 +34,23 @@ class _AutenticacaoState extends State<Autenticacao> {
               decoration: InputDecoration(labelText: 'Cargo'),
               validator: (value) {
                 if (value == null ||
-                    (value != 'FC' && value != 'G' && value != 'fc' && value != 'g' )) {
+                    (value != 'FC' &&
+                        value != 'G' &&
+                        value != 'fc' &&
+                        value != 'g')) {
                   return 'Por favor, insira um cargo válido ("Funcionario Comum" ou "Gerente")';
                 }
                 return null;
               },
             ),
+            SizedBox(
+              height: 30,
+            ),
             ElevatedButton(
               onPressed: () {
                 if (_formKey.currentState!.validate()) {
-                  ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content:
-                      Text('Processando Dados')));
+                  ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(content: Text('Processando Dados')));
                   Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => LoginView()),

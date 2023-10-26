@@ -32,7 +32,8 @@ class _ConfigState extends State<Config> {
             title: Text('Idioma'),
             trailing: DropdownButton<String>(
               value: _language,
-              items: <String>['Português', 'Inglês'].map<DropdownMenuItem<String>>((String value) {
+              items: <String>['Português', 'Inglês']
+                  .map<DropdownMenuItem<String>>((String value) {
                 return DropdownMenuItem<String>(
                   value: value,
                   child: Text(value),
@@ -45,10 +46,13 @@ class _ConfigState extends State<Config> {
               },
             ),
           ),
+          SizedBox(
+            height: 30,
+          ),
           ElevatedButton(
             child: Text('Sair'),
             onPressed: () {
-            Navigator.pushNamed(context, 'inicio');
+              Navigator.pushNamed(context, 'inicio');
             },
           ),
         ],

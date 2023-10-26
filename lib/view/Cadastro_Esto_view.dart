@@ -73,24 +73,29 @@ class _CadastroEstoqueState extends State<CadastroEstoque> {
                   return null;
                 },
               ),
-
-                 Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        IconButton(
-                          icon: _lotePressed ? Icon(Icons.check_box) : Icon(Icons.check_box_outline_blank), // O ícone muda aqui
-                          onPressed: () {
-                            setState(() {
-                              _lotePressed = !_lotePressed;
-                            });
-                          },
-                        ),
-                        SizedBox(width: 10), // Você pode ajustar o espaço entre o ícone e o texto
-                        Text('Lote'),
-                      ],
-                    ),
-
-
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  IconButton(
+                    icon: _lotePressed
+                        ? Icon(Icons.check_box)
+                        : Icon(
+                            Icons.check_box_outline_blank), // O ícone muda aqui
+                    onPressed: () {
+                      setState(() {
+                        _lotePressed = !_lotePressed;
+                      });
+                    },
+                  ),
+                  SizedBox(
+                      width:
+                          10), // Você pode ajustar o espaço entre o ícone e o texto
+                  Text('Lote'),
+                ],
+              ),
+              SizedBox(
+                height: 30,
+              ),
               ElevatedButton(
                 style: ButtonStyle(
                   shape: MaterialStateProperty.all<RoundedRectangleBorder>(
@@ -101,7 +106,8 @@ class _CadastroEstoqueState extends State<CadastroEstoque> {
                 ),
                 onPressed: () {
                   if (_formKey.currentState?.validate() ?? false) {
-                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Processando Dados')));
+                    ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(content: Text('Processando Dados')));
                   }
                 },
                 child: Text('Cadastrar'),
