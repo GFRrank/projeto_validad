@@ -12,6 +12,7 @@ class Produtos extends StatelessWidget {
     return DefaultTabController(
       length: 3,
       child: Scaffold(
+        backgroundColor: Colors.black38,
         appBar: AppBar(
           bottom: TabBar(
             tabs: [
