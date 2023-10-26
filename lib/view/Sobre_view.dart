@@ -83,7 +83,7 @@ class Sobre extends StatelessWidget {
                               90, height:
                                 90, child:
                                   ClipRRect(child:
-                                    Image.asset("assets/gf - eu.jpg"),
+                                    Image.asset("assets/gui.jpg"),
                                     borderRadius:
                                       const BorderRadius.all(Radius.circular(360))))),
                         const SizedBox(height:
