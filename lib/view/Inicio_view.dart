@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-
 void main() {
   runApp(const MaterialApp(
     home: MyApp(),
@@ -59,12 +58,14 @@ class Inicio extends StatelessWidget {
             SizedBox(
               width: 200,
               height: 200,
-              child: Image.asset("assets/gfrlogo.png"),
+              child: Image.asset("assets/gfrlogo.png", color: Colors.white),
             ),
             Padding(
               padding: EdgeInsets.only(top: 5.0),
               child: ElevatedButton(
-                style: ButtonStyle(backgroundColor: MaterialStateProperty.all<Color>(Colors.green[800]!)), // Define a cor do botão aqui
+                style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.all<Color>(
+                        Colors.green[800]!)), // Define a cor do botão aqui
                 child: const Text('Iniciar'),
                 onPressed: () {
                   Navigator.pushNamed(context, 'autent');
