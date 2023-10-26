@@ -1,34 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:projeto_valid/view/Login_view.dart';
-import 'package:projeto_valid/view/EsqueceuSenha_view.dart';
-import 'package:projeto_valid/view/Cadastro_Func_view.dart';
-import 'package:projeto_valid/view/Cadastro_Esto_view.dart';
-import 'package:projeto_valid/view/Produtos_view.dart';
-import 'package:projeto_valid/view/Sobre_view.dart';
-
-
-void main() => runApp(const MyApp());
-
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      initialRoute: 'hub_screen',
-      routes: {
-        'login': (context) => const LoginView(),
-        'esqueceu_senha': (context) => EsqueceuSenhaView(),
-        'hub_screen': (context) => const HubScreen(),
-        'cadastro_func': (context) => CadastroFunc(),
-        'cadastro_estoque': (context) =>  CadastroEstoque(), 
-        'produtos': (context) =>  Produtos(), // Adicione esta linha
-        'sobre': (context) =>  Sobre(), // Adicione esta linha
-      },
-    );
-  }
-}
 
 class HubScreen extends StatelessWidget {
   const HubScreen({Key? key}) : super(key: key);
@@ -60,45 +30,69 @@ class HubScreen extends StatelessWidget {
         child: ListView(
           padding: EdgeInsets.zero,
           children: <Widget>[
-            const DrawerHeader(
+            DrawerHeader(
               decoration: BoxDecoration(
-                color: Colors.blue,
+                gradient: LinearGradient(
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                  colors: [
+                    Color.fromARGB(255, 0, 117, 35).withOpacity(1.0),
+                    Color.fromARGB(255, 0, 0, 0).withOpacity(1.0),
+                    Color.fromARGB(255, 0, 255, 42).withOpacity(1.0),
+                  ],
+                ),
               ),
-              child: Text('Menu'),
+              child: Row(
+                children: <Widget>[
+                  Container(
+                    height: 50.0,
+                    width: 50.0,
+                    decoration: const BoxDecoration(
+                      image: DecorationImage(
+                        image: AssetImage('assets/gfrlogo.png'),
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(width: 10), // Adicione espaço entre a imagem e o texto
+                  Text('Menu', style: TextStyle(fontSize: 40)),
+                ],
+              ),
             ),
             ListTile(
-              title: const Text('Cadastro Funcionários'),
+              title: const Text('Cadastro Funcionários', style: TextStyle(fontSize: 18)), // Aumente o tamanho do texto aqui
               onTap: () {
                 Navigator.pushNamed(context, 'cadastro_func');
               },
-            ), // Adicione esta linha
+            ), 
+            SizedBox(height: 10), // Adicione espaço entre os itens
             ListTile(
-              title: const Text('Cadastro Estoque'),
+              title: const Text('Cadastro Estoque', style: TextStyle(fontSize: 18)), // Aumente o tamanho do texto aqui
               onTap: () {
                 Navigator.pushNamed(context, 'cadastro_estoque');
               },
-            ), // Feche o ListTile aqui
+            ), 
+            SizedBox(height: 10), // Adicione espaço entre os itens
             ListTile(
-              title: const Text('Estoque'),
+              title: const Text('Estoque', style: TextStyle(fontSize: 18)), // Aumente o tamanho do texto aqui
               onTap: () {
                 Navigator.pushNamed(context, 'produtos');
               },
-            ), // Feche o ListTile aqui
-
-          ListTile(
-              title: const Text('Configurações'),
+            ), 
+            SizedBox(height: 10), // Adicione espaço entre os itens
+            ListTile(
+              title: const Text('Configurações', style: TextStyle(fontSize: 18)), // Aumente o tamanho do texto aqui
               onTap: () {
                 Navigator.pushNamed(context, 'configuraçoes');
               },
-            ), // 
+            ), 
+            SizedBox(height: 10), // Adicione espaço entre os itens
             ListTile(
-              title: const Text('Sobre'),
+              title: const Text('Sobre', style: TextStyle(fontSize: 18)), // Aumente o tamanho do texto aqui
               onTap: () {
                 Navigator.pushNamed(context, 'sobre');
               },
-            ), // 
-
-
+            ), 
           ],
         ),
       ),    
