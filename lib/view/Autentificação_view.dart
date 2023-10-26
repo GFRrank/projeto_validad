@@ -34,7 +34,7 @@ class _AutenticacaoState extends State<Autenticacao> {
               decoration: InputDecoration(labelText: 'Cargo'),
               validator: (value) {
                 if (value == null ||
-                    (value != 'Funcionario Comum' && value != 'Gerente')) {
+                    (value != 'FC' && value != 'G' && value != 'fc' && value != 'g' )) {
                   return 'Por favor, insira um cargo válido ("Funcionario Comum" ou "Gerente")';
                 }
                 return null;

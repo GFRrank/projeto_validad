@@ -43,10 +43,10 @@ class CadastroFunc extends StatelessWidget {
                   },
                 ),
                 TextFormField(
-                  decoration: const InputDecoration(labelText: 'CPF'),
+                  decoration: const InputDecoration(labelText: 'ID'),
                   validator: (value) {
                     if (value == null || value.isEmpty) {
-                      return 'Por favor, insira seu CPF.';
+                      return 'Por favor, insira seu ID.';
                     }
                     return null;
                   },
