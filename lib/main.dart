@@ -6,6 +6,13 @@ import 'package:projeto_valid/view/Cadastro_Func_view.dart';
 import 'package:projeto_valid/view/HubScreen_view.dart';
 import 'package:projeto_valid/view/Inicio_view.dart';
 import 'package:projeto_valid/view/Cadastro_Esto_view.dart';
+import 'package:projeto_valid/view/Produtos_view.dart';
+import 'package:projeto_valid/view/Sobre_view.dart';
+import 'package:projeto_valid/view/Autentificação_view.dart';
+import 'package:projeto_valid/view/Configurações_view.dart';
+
+
+
 
 
 
@@ -35,6 +42,10 @@ class MyApp extends StatelessWidget {
         'hub_screen': (context) => const HubScreen(), // Adicione a rota para a tela HubScreenView
         'cadastro_func': (context) => CadastroFunc(), // Adicione esta linha
         'cadastro_estoque': (context) =>  CadastroEstoque(), // Adicione esta linha
+        'produtos': (context) =>  Produtos(), // Adicione esta linha
+        'sobre': (context) =>  Sobre(), // Adicione esta linha
+        'configuraçoes': (context) =>  Config(), // Adicione esta linha
+        'autent': (context) =>  Autenticacao(), // Adicione esta linha
         
       },
 

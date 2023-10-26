@@ -64,31 +64,41 @@ class _CadastroEstoqueState extends State<CadastroEstoque> {
                 },
               ),
               TextFormField(
+                enabled: _lotePressed,
                 decoration: InputDecoration(labelText: 'Quantidade'),
                 validator: (value) {
-                  if (value == null || value.isEmpty) {
+                  if (_lotePressed && (value == null || value.isEmpty)) {
                     return 'Por favor, insira a quantidade';
                   }
                   return null;
                 },
               ),
+
+                 Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        IconButton(
+                          icon: _lotePressed ? Icon(Icons.check_box) : Icon(Icons.check_box_outline_blank), // O ícone muda aqui
+                          onPressed: () {
+                            setState(() {
+                              _lotePressed = !_lotePressed;
+                            });
+                          },
+                        ),
+                        SizedBox(width: 10), // Você pode ajustar o espaço entre o ícone e o texto
+                        Text('Lote'),
+                      ],
+                    ),
+
+
               ElevatedButton(
                 style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.resolveWith<Color>(
-                    (Set<MaterialState> states) {
-                      if (_lotePressed) return Colors.grey;
-                      return Colors.blue; // Use the component's default.
-                    },
+                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                    RoundedRectangleBorder(
+                      borderRadius: BorderRadius.zero,
+                    ),
                   ),
                 ),
-                child: Text('Lote'),
-                onPressed: () {
-                  setState(() {
-                    _lotePressed = !_lotePressed;
-                  });
-                },
-              ),
-              ElevatedButton(
                 onPressed: () {
                   if (_formKey.currentState?.validate() ?? false) {
                     ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Processando Dados')));
