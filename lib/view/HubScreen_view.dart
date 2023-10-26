@@ -18,7 +18,7 @@ class HubScreen extends StatelessWidget {
               width: 200.0,
               decoration: const BoxDecoration(
                 image: DecorationImage(
-                  image: Image.asset("assets/gfrlogo.png", color: Colors.white),
+                  image: AssetImage('assets/gfrlogo.png'),
                   fit: BoxFit.cover,
                 ),
               ),
