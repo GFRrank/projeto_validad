@@ -26,8 +26,20 @@ class Inicio extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double hig = MediaQuery.of(context).size.height;
+    double wid = MediaQuery.of(context).size.width;
+    double maiorEixo;
+    if (wid>hig){
+      maiorEixo = wid;
+    }
+    else{
+      maiorEixo = hig;
+    }
+    
     return Scaffold(
       body: Container(
+        height: hig,
+        width: wid,
         decoration: BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topLeft,
@@ -39,27 +51,30 @@ class Inicio extends StatelessWidget {
             ],
           ),
         ),
-        padding: EdgeInsets.only(
-          top: 200,
+        padding: const EdgeInsets.only(
           left: 40,
           right: 40,
         ),
-        child: ListView(
-          children: [
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
             SizedBox(
-              width: 200,
-              height: 200,
-              child: Image.asset("assets/gfrlogo.png", color: Colors.white),
+              child:
+                Image.asset("assets/gfrlogo.png", color: Colors.white, scale: 900/maiorEixo,),
             ),
-            SizedBox(
+            const SizedBox(
               height: 30,
             ),
-            Padding(
-              padding: EdgeInsets.only(top: 5.0),
+            SizedBox(
+              width: 500,
+              height: 40,
               child: ElevatedButton(
-                style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all<Color>(
-                        Colors.green[800]!)), // Define a cor do botão aqui
+                style:
+                  ElevatedButton.styleFrom(
+                    backgroundColor:Colors.green[800],
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50))
+                  ),
                 child: const Text('Iniciar'),
                 onPressed: () {
                   Navigator.pushNamed(context, 'autent');
