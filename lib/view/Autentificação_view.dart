@@ -15,13 +15,20 @@ class _AutenticacaoState extends State<Autenticacao> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text('Autenticação')),
-      body: Form(
+      body: Container(
+        padding: const EdgeInsets.only(top: 40, left: 20, right: 20),
         key: _formKey,
         child: Column(
           children: <Widget>[
             TextFormField(
               controller: _idController,
-              decoration: InputDecoration(labelText: 'ID'),
+              decoration: const InputDecoration(
+                labelText: 'ID',
+                enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.all(Radius.elliptical(50, 50)),
+                  borderSide: BorderSide(width: 0.5)
+                )
+              ),
               validator: (value) {
                 if (value == null || value.isEmpty || value.length != 10) {
                   return 'Por favor, insira um ID válido com 10 caracteres';
@@ -29,9 +36,18 @@ class _AutenticacaoState extends State<Autenticacao> {
                 return null;
               },
             ),
+            const SizedBox(
+              height: 20,
+            ),
             TextFormField(
               controller: _cargoController,
-              decoration: InputDecoration(labelText: 'Cargo'),
+              decoration: const InputDecoration(
+                labelText: 'cargo',
+                enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.all(Radius.elliptical(50, 50)),
+                  borderSide: BorderSide(width: 0.5)
+                )
+              ),
               validator: (value) {
                 if (value == null ||
                     (value != 'FC' &&
@@ -43,7 +59,7 @@ class _AutenticacaoState extends State<Autenticacao> {
                 return null;
               },
             ),
-            SizedBox(
+            const SizedBox(
               height: 30,
             ),
             ElevatedButton(
