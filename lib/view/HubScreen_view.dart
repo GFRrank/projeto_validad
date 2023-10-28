@@ -93,6 +93,12 @@ class HubScreen extends StatelessWidget {
                 Navigator.pushNamed(context, 'sobre');
               },
             ), 
+             ListTile(
+              title: const Text('Excel', style: TextStyle(fontSize: 18)), // Aumente o tamanho do texto aqui
+              onTap: () {
+                Navigator.pushNamed(context, 'excel');
+              },
+            ), 
           ],
         ),
       ),    

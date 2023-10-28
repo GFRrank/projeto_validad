@@ -10,6 +10,8 @@ import 'package:projeto_valid/view/Produtos_view.dart';
 import 'package:projeto_valid/view/Sobre_view.dart';
 import 'package:projeto_valid/view/Autentificação_view.dart';
 import 'package:projeto_valid/view/Configurações_view.dart';
+import 'package:projeto_valid/view/ExcelDataViewer_view.dart';
+
 
 
 
@@ -45,7 +47,10 @@ class MyApp extends StatelessWidget {
         'produtos': (context) =>  Produtos(), // Adicione esta linha
         'sobre': (context) =>  Sobre(), // Adicione esta linha
         'configuraçoes': (context) =>  Config(), // Adicione esta linha
-        'autent': (context) =>  Autenticacao(), // Adicione esta linha
+        'autent': (context) =>  Autenticacao(), // Adicione esta 
+        'excel': (context) =>  ExcelDataViewer(), // Adicione esta linha
+
+
         
       },
 
