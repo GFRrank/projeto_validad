@@ -63,10 +63,7 @@ class _AutenticacaoState extends State<Autenticacao> {
                 if (_formKey.currentState!.validate()) {
                   ScaffoldMessenger.of(context).showSnackBar(
                       const SnackBar(content: Text('Processando Dados')));
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => LoginView()),
-                  );
+                  Navigator.pushNamed(context, 'login');
                 }
               },
               child: Text('Autenticar'),

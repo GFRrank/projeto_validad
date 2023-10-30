@@ -26,7 +26,9 @@ class Inicio extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double hig = MediaQuery.of(context).size.height;
+    //Variáveis locais criadas para detectar o tamanho da tela
+    // Assim aumentando da tela e da imagem central de acordo com a tela
+    double hig = MediaQuery.of(context).size.height; 
     double wid = MediaQuery.of(context).size.width;
     double maiorEixo;
     if (wid>hig){
@@ -45,9 +47,9 @@ class Inicio extends StatelessWidget {
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
             colors: [
-              Color.fromARGB(255, 0, 117, 35).withOpacity(1.0),
+              const Color.fromARGB(255, 0, 117, 35).withOpacity(1.0),
               const Color.fromARGB(255, 0, 0, 0).withOpacity(1.0),
-              Color.fromARGB(255, 0, 255, 42).withOpacity(1.0),
+              const Color.fromARGB(255, 0, 255, 42).withOpacity(1.0),
             ],
           ),
         ),
