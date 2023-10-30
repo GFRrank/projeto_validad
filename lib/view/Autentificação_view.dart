@@ -1,74 +1,101 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:projeto_valid/view/Login_view.dart';
 
 class Autenticacao extends StatefulWidget {
   @override
   _AutenticacaoState createState() => _AutenticacaoState();
 }
-
 class _AutenticacaoState extends State<Autenticacao> {
+  List<String> Cargos = ['Funcionário Comum', 'Gerente'];
+  String? CargoSelecionado = 'Funcionário Comum';
   final _formKey = GlobalKey<FormState>();
   final _idController = TextEditingController();
-  final _cargoController = TextEditingController();
+  //final _cargoController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text('Autenticação')),
-      body: Container(
-        padding: const EdgeInsets.only(top: 40, left: 20, right: 20),
+      body: Form(
         key: _formKey,
-        child: Column(
-          children: <Widget>[
-            TextFormField(
-              controller: _idController,
-              decoration: const InputDecoration(
+        child: Container(
+          padding: const EdgeInsets.only(top: 40, left: 20, right: 20),
+          child: Column(
+            children: <Widget>[
+              TextFormField(
+                controller: _idController,
+                inputFormatters: [LengthLimitingTextInputFormatter(10)],
+
+                decoration: const InputDecoration(
                   labelText: 'ID',
-                  enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.elliptical(50, 50)),
-                      borderSide: BorderSide(width: 0.5))),
-              validator: (value) {
-                if (value == null || value.isEmpty || value.length != 10) {
-                  return 'Por favor, insira um ID válido com 10 caracteres';
-                }
-                return null;
-              },
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            TextFormField(
-              controller: _cargoController,
-              decoration: const InputDecoration(
+                  border: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.elliptical(50, 50))
+                  )
+                ),
+                validator: (String? value) {
+                  if (value == null || value.isEmpty || value.length != 10) {
+                    return 'Por favor, insira um ID válido com 10 caracteres';
+                  }
+                  return null;
+                },
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              /*TextFormField(
+                controller: _cargoController,
+                inputFormatters: [LengthLimitingTextInputFormatter(2)],
+                decoration: const InputDecoration(
                   labelText: 'cargo',
-                  enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.elliptical(50, 50)),
-                      borderSide: BorderSide(width: 0.5))),
-              validator: (value) {
-                if (value == null ||
-                    (value != 'FC' &&
-                        value != 'G' &&
-                        value != 'fc' &&
-                        value != 'g')) {
-                  return 'Por favor, insira um cargo válido ("Funcionario Comum" ou "Gerente")';
-                }
-                return null;
-              },
-            ),
-            const SizedBox(
-              height: 30,
-            ),
-            ElevatedButton(
-              onPressed: () {
-                if (_formKey.currentState!.validate()) {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(content: Text('Processando Dados')));
-                  Navigator.pushNamed(context, 'login');
-                }
-              },
-              child: Text('Autenticar'),
-            ),
-          ],
+                  border: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.elliptical(50, 50))
+                  )
+                ),
+                validator: (String? value) {
+                  if (value == null ||
+                      (value != 'FC' &&
+                          value != 'G' &&
+                          value != 'fc' &&
+                          value != 'g')) {
+                    return 'Por favor, insira um cargo válido ("Funcionario Comum" ou "Gerente")';
+                  }
+                  return null;
+                },
+              ),*/
+              SizedBox(
+                width: 200,
+                height: 60,
+                child: DropdownButtonFormField(
+                  decoration: InputDecoration(
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(32),
+                      borderSide: BorderSide(color: Colors.blue),
+                    ),
+                  ),
+                  value: CargoSelecionado,
+                  items: Cargos.map((cargo) => DropdownMenuItem(
+                    value: cargo,
+                    child: Text(cargo),
+                    )).toList(),
+                  onChanged: (cargo) => setState(() => CargoSelecionado = cargo), 
+                  ),
+              ),
+              const SizedBox(
+                height: 30,
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  if (_formKey.currentState!.validate()) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(content: Text('Processando Dados')));
+                    Navigator.pushNamed(context, 'login');
+                  }
+                },
+                child: Text('Autenticar'),
+              ),
+            ],
+          ),
         ),
       ),
     );
