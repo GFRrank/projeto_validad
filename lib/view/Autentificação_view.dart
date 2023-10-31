@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:projeto_valid/view/Login_view.dart';
 
 class Autenticacao extends StatefulWidget {
   @override
@@ -16,7 +15,22 @@ class _AutenticacaoState extends State<Autenticacao> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Autenticação')),
+      appBar: AppBar(
+        title: Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [
+              const Color.fromARGB(255, 0, 117, 35).withOpacity(1.0),
+              const Color.fromARGB(255, 0, 0, 0).withOpacity(1.0),
+              const Color.fromARGB(255, 0, 255, 42).withOpacity(1.0),
+            ],
+          ),
+          ),
+          child: const Text('Autenticação'),
+        ),
+      ),
       body: Form(
         key: _formKey,
         child: Container(
@@ -43,26 +57,6 @@ class _AutenticacaoState extends State<Autenticacao> {
               const SizedBox(
                 height: 20,
               ),
-              /*TextFormField(
-                controller: _cargoController,
-                inputFormatters: [LengthLimitingTextInputFormatter(2)],
-                decoration: const InputDecoration(
-                  labelText: 'cargo',
-                  border: OutlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.elliptical(50, 50))
-                  )
-                ),
-                validator: (String? value) {
-                  if (value == null ||
-                      (value != 'FC' &&
-                          value != 'G' &&
-                          value != 'fc' &&
-                          value != 'g')) {
-                    return 'Por favor, insira um cargo válido ("Funcionario Comum" ou "Gerente")';
-                  }
-                  return null;
-                },
-              ),*/
               SizedBox(
                 width: 200,
                 height: 60,
