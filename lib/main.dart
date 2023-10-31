@@ -11,6 +11,7 @@ import 'package:projeto_valid/view/Sobre_view.dart';
 import 'package:projeto_valid/view/Autentificação_view.dart';
 import 'package:projeto_valid/view/Configurações_view.dart';
 import 'package:projeto_valid/view/ExcelDataViewer_view.dart';
+import 'package:projeto_valid/view/Whatsapp_view.dart';
 
 
 
@@ -49,6 +50,7 @@ class MyApp extends StatelessWidget {
         'configuraçoes': (context) =>  Config(), // Adicione esta linha
         'autent': (context) =>  Autenticacao(), // Adicione esta 
         'excel': (context) =>  ExcelDataViewer(), // Adicione esta linha
+        'whatsapp': (context) => WhatsappView(), // Adicione esta linha
 
 
         

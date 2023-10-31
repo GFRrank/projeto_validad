@@ -99,6 +99,12 @@ class HubScreen extends StatelessWidget {
                 Navigator.pushNamed(context, 'excel');
               },
             ), 
+             ListTile(
+              title: const Text('Whatsapp', style: TextStyle(fontSize: 18)), // Aumente o tamanho do texto aqui
+              onTap: () {
+                Navigator.pushNamed(context, 'whatsapp');
+              },
+            ),   
           ],
         ),
       ),    
