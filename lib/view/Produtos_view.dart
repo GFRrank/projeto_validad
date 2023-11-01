@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:projeto_valid/main.dart';
 
 void main() {
   runApp(MaterialApp(
@@ -14,7 +15,8 @@ class Produtos extends StatelessWidget {
       child: Scaffold(
         backgroundColor: Colors.black38,
         appBar: AppBar(
-          bottom: TabBar(
+          flexibleSpace: degradeVerde(),
+          bottom: const TabBar(
             tabs: [
               Tab(
                   text: "Rebaixa",

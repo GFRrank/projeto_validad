@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:projeto_valid/main.dart';
 
 class HubScreen extends StatelessWidget {
   const HubScreen({Key? key}) : super(key: key);
@@ -7,7 +8,9 @@ class HubScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Hub Screen'),
+        flexibleSpace: degradeVerde(),
+        centerTitle: true,
+        title: const Text('Hub Screen', style: TextStyle(fontSize: 23)),
       ),
       body: Center(
         child: Column(
@@ -48,6 +51,7 @@ class HubScreen extends StatelessWidget {
                     height: 50.0,
                     width: 50.0,
                     decoration: const BoxDecoration(
+                          
                       image: DecorationImage(
                         image: AssetImage('assets/gfrlogo.png'),
                         fit: BoxFit.cover,

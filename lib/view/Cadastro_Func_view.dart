@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:projeto_valid/main.dart';
 
 void main() {
   runApp(MaterialApp(
@@ -15,17 +16,23 @@ class CadastroFunc extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        flexibleSpace: degradeVerde(),
         title: const Text('Formulário'),
       ),
       body: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: const EdgeInsets.only(top: 40, left: 20, right:20),
         child: Form(
           key: _formKey,
           child: SingleChildScrollView(
             child: Column(
               children: <Widget>[
                 TextFormField(
-                  decoration: const InputDecoration(labelText: 'Nome'),
+                  decoration: const InputDecoration(
+                    labelText: 'Nome',
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.elliptical(50, 50))
+                    )
+                  ),
                   validator: (value) {
                     if (value == null || value.isEmpty) {
                       return 'Por favor, insira seu nome.';
@@ -34,7 +41,13 @@ class CadastroFunc extends StatelessWidget {
                   },
                 ),
                 TextFormField(
-                  decoration: const InputDecoration(labelText: 'Email'),
+                  decoration: const InputDecoration(
+                    labelText: 'Email',
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.elliptical(50, 50))
+                    )
+                  ),
+                keyboardType: TextInputType.emailAddress,
                   validator: (value) {
                     if (value == null || value.isEmpty) {
                       return 'Por favor, insira seu email.';
@@ -43,7 +56,12 @@ class CadastroFunc extends StatelessWidget {
                   },
                 ),
                 TextFormField(
-                  decoration: const InputDecoration(labelText: 'ID'),
+                  decoration: const InputDecoration(
+                    labelText: 'ID',
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.elliptical(50, 50))
+                    )
+                  ),
                   validator: (value) {
                     if (value == null || value.isEmpty) {
                       return 'Por favor, insira seu ID.';
@@ -52,7 +70,12 @@ class CadastroFunc extends StatelessWidget {
                   },
                 ),
                 TextFormField(
-                  decoration: const InputDecoration(labelText: 'Telefone'),
+                  decoration: const InputDecoration(
+                    labelText: 'Telefone',
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.elliptical(50, 50))
+                    )
+                  ),
                   validator: (value) {
                     if (value == null || value.isEmpty) {
                       return 'Por favor, insira seu telefone.';
@@ -61,7 +84,12 @@ class CadastroFunc extends StatelessWidget {
                   },
                 ),
                 TextFormField(
-                  decoration: const InputDecoration(labelText: 'Loja'),
+                  decoration: const InputDecoration(
+                    labelText: 'Loja',
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.elliptical(50, 50))
+                    )
+                  ),
                   validator: (value) {
                     if (value == null || value.isEmpty) {
                       return 'Por favor, insira a loja.';
@@ -70,7 +98,12 @@ class CadastroFunc extends StatelessWidget {
                   },
                 ),
                 TextFormField(
-                  decoration: const InputDecoration(labelText: 'Cargo'),
+                  decoration: const InputDecoration(
+                    labelText: 'Cargo',
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.elliptical(50, 50))
+                    )
+                  ),
                   validator: (value) {
                     if (value == null || value.isEmpty) {
                       return 'Por favor, insira o cargo.';
@@ -79,7 +112,12 @@ class CadastroFunc extends StatelessWidget {
                   },
                 ),
                 TextFormField(
-                  decoration: const InputDecoration(labelText: 'Setor'),
+                  decoration: const InputDecoration(
+                    labelText: 'Setor',
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.elliptical(50, 50))
+                    )
+                  ),
                   validator: (value) {
                     if (value == null || value.isEmpty) {
                       return 'Por favor, insira o setor.';

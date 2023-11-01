@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:projeto_valid/main.dart';
 
 void main() {
   runApp(MaterialApp(
@@ -19,6 +20,7 @@ class _CadastroEstoqueState extends State<CadastroEstoque> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        flexibleSpace: degradeVerde(),
         title: Text('Cadastro de Estoque'),
       ),
       body: Form(

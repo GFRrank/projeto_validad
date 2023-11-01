@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:projeto_valid/main.dart';
 
 class Config extends StatefulWidget {
   @override
@@ -13,6 +14,9 @@ class _ConfigState extends State<Config> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        flexibleSpace: Container(
+          color: Colors.green,
+        ),
         title: Text('Configurações'),
       ),
       body: ListView(

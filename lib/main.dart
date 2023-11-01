@@ -28,9 +28,26 @@ void main() {
   );
 }
 
+Widget degradeVerde () {
+      return Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              colors: [
+                const Color.fromARGB(255, 0, 117, 35).withOpacity(1.0),
+                const Color.fromARGB(255, 0, 0, 0).withOpacity(1.0),
+                const Color.fromARGB(255, 0, 255, 42).withOpacity(1.0),
+              ],
+            ),
+          ),
+      );
+}
+
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
-
+  degradeVerde() => degradeVerde();
+  
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
