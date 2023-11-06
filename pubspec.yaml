@@ -10,6 +10,8 @@ dependencies:
   device_preview: ^1.1.0
   flutter:
     sdk: flutter
+  url_launcher: ^6.0.12 
+  cupertino_icons: ^1.0.2
   image_picker: ^0.8.4+4
   syncfusion_flutter_xlsio: 23.1.42
   spreadsheet_decoder: ^2.0.0
@@ -18,16 +20,13 @@ dependencies:
   cloud_firestore: ^4.12.2
   firebase_auth: ^4.12.1
 
-
-
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^2.0.0
-  
 
 flutter:
   uses-material-design: true
   assets:
-  - assets/
-  - assets/example.xlsx
+    - assets/
+    - assets/example.xlsx

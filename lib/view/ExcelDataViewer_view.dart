@@ -7,12 +7,7 @@ void main() {
     theme: ThemeData(
       brightness: Brightness.light, 
     ),
-    home: Scaffold(
-      appBar: AppBar(
-        title: const Text('Excel Data Viewer'),
-      ),
-      body: ExcelDataViewer(),
-    ),
+    home: ExcelDataViewer(),
   ));
 }
 
@@ -23,6 +18,7 @@ class ExcelDataViewer extends StatefulWidget {
 
 class _ExcelDataViewerState extends State<ExcelDataViewer> {
   List<DataRow> rows = [];
+  bool isLoading = true;
 
   @override
   void initState() {
@@ -41,21 +37,29 @@ class _ExcelDataViewerState extends State<ExcelDataViewer> {
       }).toList();
     } else {
       // Trate o caso em que a tabela é nula.
+      print('Tabela não encontrada');
     }
 
-    setState(() {});
+    setState(() {
+      isLoading = false;
+    });
   }
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: DataTable(
-        columns: const <DataColumn>[
-          DataColumn(label: Text('Coluna A')),
-          DataColumn(label: Text('Coluna B')),
-          // Adicione mais DataColumn para cada coluna adicional.
-        ],
-        rows: rows,
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Excel Data Viewer'),
+      ),
+      body: isLoading ? CircularProgressIndicator() : SingleChildScrollView(
+        child: DataTable(
+          columns: const <DataColumn>[
+            DataColumn(label: Text('Coluna A')),
+            DataColumn(label: Text('Coluna B')),
+            // Adicione mais DataColumn para cada coluna adicional.
+          ],
+          rows: rows,
+        ),
       ),
     );
   }

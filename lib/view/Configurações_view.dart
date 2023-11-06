@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:projeto_valid/main.dart';
 
 class Config extends StatefulWidget {
   @override

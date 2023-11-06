@@ -76,6 +76,9 @@ class _LoginViewState extends State<LoginView> {
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30))
                 ),
                 onPressed: () {
+
+
+                  
                   String email = _emailController.text;
                   bool isEmailValid = _emailRegExp.hasMatch(email);
                   String password = _passwordController.text;
