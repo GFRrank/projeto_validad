@@ -20,7 +20,7 @@ class CadastroFunc extends StatelessWidget {
         title: const Text('Formulário'),
       ),
       body: Padding(
-        padding: const EdgeInsets.only(top: 40, left: 20, right:20),
+        padding: const EdgeInsets.only(top: 20, left: 20, right:20),
         child: Form(
           key: _formKey,
           child: SingleChildScrollView(
@@ -29,9 +29,6 @@ class CadastroFunc extends StatelessWidget {
                 TextFormField(
                   decoration: const InputDecoration(
                     labelText: 'Nome',
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.elliptical(50, 50))
-                    )
                   ),
                   validator: (value) {
                     if (value == null || value.isEmpty) {
@@ -40,12 +37,10 @@ class CadastroFunc extends StatelessWidget {
                     return null;
                   },
                 ),
+                SizedBox(height: 5),
                 TextFormField(
                   decoration: const InputDecoration(
                     labelText: 'Email',
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.elliptical(50, 50))
-                    )
                   ),
                 keyboardType: TextInputType.emailAddress,
                   validator: (value) {
@@ -55,12 +50,10 @@ class CadastroFunc extends StatelessWidget {
                     return null;
                   },
                 ),
+                SizedBox(height: 5),
                 TextFormField(
                   decoration: const InputDecoration(
                     labelText: 'ID',
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.elliptical(50, 50))
-                    )
                   ),
                   validator: (value) {
                     if (value == null || value.isEmpty) {
@@ -69,12 +62,10 @@ class CadastroFunc extends StatelessWidget {
                     return null;
                   },
                 ),
+                SizedBox(height: 5),
                 TextFormField(
                   decoration: const InputDecoration(
                     labelText: 'Telefone',
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.elliptical(50, 50))
-                    )
                   ),
                   validator: (value) {
                     if (value == null || value.isEmpty) {
@@ -83,12 +74,10 @@ class CadastroFunc extends StatelessWidget {
                     return null;
                   },
                 ),
+                SizedBox(height: 5),
                 TextFormField(
                   decoration: const InputDecoration(
                     labelText: 'Loja',
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.elliptical(50, 50))
-                    )
                   ),
                   validator: (value) {
                     if (value == null || value.isEmpty) {
@@ -97,12 +86,10 @@ class CadastroFunc extends StatelessWidget {
                     return null;
                   },
                 ),
+                SizedBox(height: 5),
                 TextFormField(
                   decoration: const InputDecoration(
                     labelText: 'Cargo',
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.elliptical(50, 50))
-                    )
                   ),
                   validator: (value) {
                     if (value == null || value.isEmpty) {
@@ -111,12 +98,10 @@ class CadastroFunc extends StatelessWidget {
                     return null;
                   },
                 ),
+                SizedBox(height: 5),
                 TextFormField(
                   decoration: const InputDecoration(
                     labelText: 'Setor',
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.elliptical(50, 50))
-                    )
                   ),
                   validator: (value) {
                     if (value == null || value.isEmpty) {
@@ -125,7 +110,10 @@ class CadastroFunc extends StatelessWidget {
                     return null;
                   },
                 ),
+                SizedBox(height: 20),
                 ElevatedButton(
+                  style: ElevatedButton.styleFrom( backgroundColor: Colors.green[800],
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50))),
                   onPressed: () {
                     if (_formKey.currentState!.validate()) {
                       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content:

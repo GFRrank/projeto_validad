@@ -39,27 +39,32 @@ class HubScreen extends StatelessWidget {
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
                   colors: [
-                    Color.fromARGB(255, 0, 117, 35).withOpacity(1.0),
-                    Color.fromARGB(255, 0, 0, 0).withOpacity(1.0),
-                    Color.fromARGB(255, 0, 255, 42).withOpacity(1.0),
+                    const Color.fromARGB(255, 0, 117, 35).withOpacity(1.0),
+                    const Color.fromARGB(255, 0, 0, 0).withOpacity(1.0),
+                    const Color.fromARGB(255, 0, 255, 42).withOpacity(1.0),
                   ],
                 ),
               ),
-              child: Row(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Container(
-                    height: 50.0,
-                    width: 50.0,
-                    decoration: const BoxDecoration(
-                          
-                      image: DecorationImage(
-                        image: AssetImage('assets/gfrlogo.png'),
-                        fit: BoxFit.cover,
-                      ),
+                    child: SizedBox(
+                      child:
+                        Image.asset("assets/gfrlogo.png", color: Colors.white, scale: 3),
                     ),
                   ),
-                  const SizedBox(width: 10), // Adicione espaço entre a imagem e o texto
-                  Text('Menu', style: TextStyle(fontSize: 24)),
+                  const SizedBox(width: 10),
+                   // Adicione espaço entre a imagem e o texto
+                  const SizedBox(
+                    child: Text('Menu',
+                      style: TextStyle(
+                        fontSize: 36,
+                        color: Colors.white, 
+                      ),
+                      textAlign: TextAlign.end,
+                    ),
+                  ),
                 ],
               ),
             ),
@@ -69,28 +74,28 @@ class HubScreen extends StatelessWidget {
                 Navigator.pushNamed(context, 'cadastro_func');
               },
             ), 
-            SizedBox(height: 10), // Adicione espaço entre os itens
+            const SizedBox(height: 10), // Adicione espaço entre os itens
             ListTile(
               title: const Text('Cadastro Estoque', style: TextStyle(fontSize: 18)), // Aumente o tamanho do texto aqui
               onTap: () {
                 Navigator.pushNamed(context, 'cadastro_estoque');
               },
             ), 
-            SizedBox(height: 10), // Adicione espaço entre os itens
+            const SizedBox(height: 10), // Adicione espaço entre os itens
             ListTile(
               title: const Text('Estoque', style: TextStyle(fontSize: 18)), // Aumente o tamanho do texto aqui
               onTap: () {
                 Navigator.pushNamed(context, 'produtos');
               },
             ), 
-            SizedBox(height: 10), // Adicione espaço entre os itens
+            const SizedBox(height: 10), // Adicione espaço entre os itens
             ListTile(
               title: const Text('Configurações', style: TextStyle(fontSize: 18)), // Aumente o tamanho do texto aqui
               onTap: () {
                 Navigator.pushNamed(context, 'configuraçoes');
               },
             ), 
-            SizedBox(height: 10), // Adicione espaço entre os itens
+            const SizedBox(height: 10), // Adicione espaço entre os itens
             ListTile(
               title: const Text('Sobre', style: TextStyle(fontSize: 18)), // Aumente o tamanho do texto aqui
               onTap: () {
