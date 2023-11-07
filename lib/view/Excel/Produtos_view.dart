@@ -17,14 +17,40 @@ class Produtos extends StatefulWidget {
 }
 
 class _ProdutosState extends State<Produtos> {
-  final Stream<QuerySnapshot> _productsStream = FirebaseFirestore.instance.collection('products').snapshots();
+  late final Stream<QuerySnapshot> _productsStream;
+
+  @override
+  void initState() {
+    super.initState();
+    print('Lendo da coleção products...');
+    _productsStream = FirebaseFirestore.instance.collection('products').snapshots();
+    print('Leitura concluída.');
+  }
 
   void addProduct(String name, String category) {
+    print('Adicionando produto...');
     FirebaseFirestore.instance.collection('products').add({
       'name': name,
       'expiryDate': Timestamp.fromDate(DateTime.now().add(Duration(days: category == 'Rebaixa' ? 30 : category == 'Atenção' ? 180 : 365))),
       'category': category,
     });
+    print('Produto adicionado.');
+  }
+
+  Widget degradeVerde () {
+    return Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [
+              const Color.fromARGB(255, 0, 117, 35).withOpacity(1.0),
+              const Color.fromARGB(255, 0, 0, 0).withOpacity(1.0),
+              const Color.fromARGB(255, 0, 255, 42).withOpacity(1.0),
+            ],
+          ),
+        ),
+    );
   }
 
   @override
@@ -32,10 +58,10 @@ class _ProdutosState extends State<Produtos> {
     return DefaultTabController(
       length: 3,
       child: Scaffold(
-        backgroundColor: Colors.black38,
+        backgroundColor: Colors.white,
         appBar: AppBar(
           flexibleSpace: degradeVerde(),
-          bottom: const TabBar(
+          bottom: TabBar(
             tabs: [
               Tab(
                   text: "Rebaixa",
