@@ -18,6 +18,9 @@ class Produtos extends StatefulWidget {
 
 class _ProdutosState extends State<Produtos> {
   late final Stream<QuerySnapshot> _productsStream;
+  final _formKey = GlobalKey<FormState>();
+  final _nameController = TextEditingController();
+  final _categoryController = TextEditingController();
 
   @override
   void initState() {
@@ -76,30 +79,71 @@ class _ProdutosState extends State<Produtos> {
           ),
           title: const Text('Produtos'),
         ),
-        body: StreamBuilder<QuerySnapshot>(
-          stream: _productsStream,
-          builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
-            if (snapshot.hasError) {
-              return Text('Algo deu errado');
-            }
+        body: Column(
+          children: [
+            Form(
+              key: _formKey,
+              child: Column(
+                children: <Widget>[
+                  TextFormField(
+                    controller: _nameController,
+                    decoration: InputDecoration(labelText: 'Nome do Produto'),
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Por favor, insira o nome do produto';
+                      }
+                      return null;
+                    },
+                  ),
+                  TextFormField(
+                    controller: _categoryController,
+                    decoration: InputDecoration(labelText: 'Categoria'),
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Por favor, insira a categoria';
+                      }
+                      return null;
+                    },
+                  ),
+                  ElevatedButton(
+                    onPressed: () {
+                      if (_formKey.currentState!.validate()) {
+                        addProduct(_nameController.text, _categoryController.text);
+                      }
+                    },
+                    child: Text('Adicionar Produto'),
+                  ),
+                ],
+              ),
+            ),
+            StreamBuilder<QuerySnapshot>(
+              stream: _productsStream,
+              builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+                if (snapshot.hasError) {
+                  return Text('Algo deu errado');
+                }
 
-            if (snapshot.connectionState == ConnectionState.waiting) {
-              return Text("Carregando");
-            }
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return Text("Carregando");
+                }
 
-            return ListView(
-              children: snapshot.data!.docs.map((DocumentSnapshot document) {
-                Map<String, dynamic> data = document.data()! as Map<String, dynamic>;
-                return ListTile(
-                  title: Text(data['name']),
-                  subtitle: Text('Categoria: ${data['category']}'),
+                return Expanded(
+                  child: ListView(
+                    children: snapshot.data!.docs.map((DocumentSnapshot document) {
+                      Map<String, dynamic> data = document.data()! as Map<String, dynamic>;
+                      return ListTile(
+                        title: Text(data['name']),
+                        subtitle: Text('Categoria: ${data['category']}'),
+                      );
+                    }).toList(),
+                  ),
                 );
-              }).toList(),
-            );
-          },
+              },
+            ),
+          ],
         ),
         floatingActionButton: FloatingActionButton(
-          onPressed: () => addProduct('Nome do Produto', 'Rebaixa'), // Altere esses valores conforme necessário.
+          onPressed: () => addProduct('Nome do Produto', 'Categoria'), // Altere esses valores conforme necessário.
           tooltip: 'Adicionar Produto',
           child: Icon(Icons.add),
         ),
