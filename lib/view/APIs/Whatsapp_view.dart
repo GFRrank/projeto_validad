@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class WhatsappView extends StatefulWidget {
@@ -7,9 +8,8 @@ class WhatsappView extends StatefulWidget {
 }
 
 class _WhatsappViewState extends State<WhatsappView> {
-  final TextEditingController _phoneController = TextEditingController();
-  String _numPhone = "";
-
+  final _phoneController = TextEditingController();
+  String numPhone = "";
   @override
   Widget build(BuildContext context) {
     
@@ -20,17 +20,19 @@ class _WhatsappViewState extends State<WhatsappView> {
       body: Container(
         child: Column(
           children: <Widget>[
-            const Padding(
+            Padding(
               padding: EdgeInsets.all(20.0),
               child: TextField(
-                decoration: InputDecoration(
-                  labelText: 'Número de celular',
+                inputFormatters: [LengthLimitingTextInputFormatter(11)],
+                controller: _phoneController,
+                decoration: const InputDecoration(
+                  labelText: 'Número de telefone',
                 ),
               ),
-            ),
+            ),    
             ElevatedButton(
               onPressed: _launchURL,
-              child: Text('Enviar mensagem no WhatsApp'),
+              child: const Text('Enviar mensagem no WhatsApp'),
             ),
           ],
         ),
@@ -39,8 +41,8 @@ class _WhatsappViewState extends State<WhatsappView> {
   }
 
   _launchURL() async {
-    String numPhone="16991485653";
-    Uri url = Uri.https("api.whatsapp.com", "send", {"phone": numPhone, "text": "Hello"});
+    String numPhone = _phoneController.text;
+    Uri url = Uri.https("api.whatsapp.com", "send", {"phone": numPhone, "text": "Big Dick"});
     if (await canLaunch(url.toString())) {
       await launch(url.toString());
     } else {
