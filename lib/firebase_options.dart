@@ -44,37 +44,37 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyCUDNXCN5doJdb6e8INZTnLEJtLcTd5bFU',
-    appId: '1:458643805580:web:dfd3867f4442ed0222f2a9',
-    messagingSenderId: '458643805580',
-    projectId: 'project-validad',
-    authDomain: 'project-validad.firebaseapp.com',
-    storageBucket: 'project-validad.appspot.com',
+    apiKey: 'AIzaSyAWwOsCEqq_GfSdAnK5oXYFrnOKYWRhczk',
+    appId: '1:875560014475:web:09b427cf1eb412392a7a8e',
+    messagingSenderId: '875560014475',
+    projectId: 'projetovalidad',
+    authDomain: 'projetovalidad.firebaseapp.com',
+    storageBucket: 'projetovalidad.appspot.com',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyBB-xeT8MYiaCl5mb-cN9C46JANczQamb8',
-    appId: '1:458643805580:android:f877c8f1c2e3e4b822f2a9',
-    messagingSenderId: '458643805580',
-    projectId: 'project-validad',
-    storageBucket: 'project-validad.appspot.com',
+    apiKey: 'AIzaSyC_iF2bN3srOimrj6BbcjzRvZjgtmrn1ZE',
+    appId: '1:875560014475:android:e38046ba5ae522842a7a8e',
+    messagingSenderId: '875560014475',
+    projectId: 'projetovalidad',
+    storageBucket: 'projetovalidad.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyBgfqx3HiiAknQ-ED1okfJTn_zJtDySOO4',
-    appId: '1:458643805580:ios:c2a059fae54b66da22f2a9',
-    messagingSenderId: '458643805580',
-    projectId: 'project-validad',
-    storageBucket: 'project-validad.appspot.com',
+    apiKey: 'AIzaSyCfrdqh8FVobrYZXYxsq6XTzk0WxeNHndY',
+    appId: '1:875560014475:ios:18ec4aab392630d12a7a8e',
+    messagingSenderId: '875560014475',
+    projectId: 'projetovalidad',
+    storageBucket: 'projetovalidad.appspot.com',
     iosBundleId: 'com.example.projetoValid',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyBgfqx3HiiAknQ-ED1okfJTn_zJtDySOO4',
-    appId: '1:458643805580:ios:13216409019d277122f2a9',
-    messagingSenderId: '458643805580',
-    projectId: 'project-validad',
-    storageBucket: 'project-validad.appspot.com',
+    apiKey: 'AIzaSyCfrdqh8FVobrYZXYxsq6XTzk0WxeNHndY',
+    appId: '1:875560014475:ios:ad60972da4b8afa12a7a8e',
+    messagingSenderId: '875560014475',
+    projectId: 'projetovalidad',
+    storageBucket: 'projetovalidad.appspot.com',
     iosBundleId: 'com.example.projetoValid.RunnerTests',
   );
 }

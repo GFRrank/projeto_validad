@@ -1,25 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:device_preview/device_preview.dart';
-import 'package:projeto_valid/view/Login_view.dart';
-import 'package:projeto_valid/view/EsqueceuSenha_view.dart';
-import 'package:projeto_valid/view/Cadastro_Func_view.dart';
-import 'package:projeto_valid/view/HubScreen_view.dart';
-import 'package:projeto_valid/view/Inicio_view.dart';
-import 'package:projeto_valid/view/Cadastro_Esto_view.dart';
-import 'package:projeto_valid/view/Produtos_view.dart';
-import 'package:projeto_valid/view/Sobre_view.dart';
-import 'package:projeto_valid/view/Autentificação_view.dart';
-import 'package:projeto_valid/view/Configurações_view.dart';
-import 'package:projeto_valid/view/ExcelDataViewer_view.dart';
-import 'package:projeto_valid/view/Whatsapp_view.dart';
+import 'package:projeto_valid/view/Login/Login_view.dart';
+import 'package:projeto_valid/view/Login/EsqueceuSenha_view.dart';
+import 'package:projeto_valid/view/Cadastro/Cadastro_Func_view.dart';
+import 'package:projeto_valid/view/Sobre/HubScreen_view.dart';
+import 'package:projeto_valid/view/Sobre/Inicio_view.dart';
+import 'package:projeto_valid/view/Cadastro/Cadastro_Esto_view.dart';
+import 'package:projeto_valid/view/Excel/Produtos_view.dart';
+import 'package:projeto_valid/view/Sobre/Sobre_view.dart';
+import 'package:projeto_valid/view/Cadastro/Autentifica%C3%A7%C3%A3o_view.dart';
+import 'package:projeto_valid/view/Sobre/Configura%C3%A7%C3%B5es_view.dart';
+import 'package:projeto_valid/view/Excel/ExcelDataViewer_view.dart';
+import 'package:projeto_valid/view/APIs/Whatsapp_view.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 
 
-
-
-
-
-
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+ await Firebase.initializeApp(options: DefaultFirebaseOptions.web);
   runApp(
     DevicePreview(
       enabled: true,
@@ -68,11 +67,7 @@ class MyApp extends StatelessWidget {
         'autent': (context) =>  Autenticacao(), // Adicione esta 
         'excel': (context) =>  ExcelDataViewer(), // Adicione esta linha
         'whatsapp': (context) => WhatsappView(), // Adicione esta linha
-
-
-        
       },
-
     );
   }
 }
