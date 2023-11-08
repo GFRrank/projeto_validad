@@ -20,7 +20,7 @@ class _AutenticacaoState extends State<Autenticacao> {
         flexibleSpace: degradeVerde(),
         centerTitle: true,
         title: Text('Autenticação'),
-        ),
+      ),
       body: Form(
         key: _formKey,
         child: Container(

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:syncfusion_flutter_xlsio/xlsio.dart';
-
+import '../../controller/login_controller.dart';
 import '../../main.dart';
 
 class CadastroApp extends StatefulWidget {
@@ -25,7 +24,11 @@ class CadastroApp extends StatefulWidget {
 }
 */
 class _CadastroAppState extends State<CadastroApp> {
-  
+  var txtEmail = TextEditingController();
+  var txtNome = TextEditingController();
+  var txtPhone = TextEditingController();
+  var txtSenha = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
 
@@ -35,37 +38,48 @@ class _CadastroAppState extends State<CadastroApp> {
         centerTitle: true,
         title: const Text('Cadastro'),
       ),
-      body: const Column(
+      body: Column(
         children: [
           Padding(
             padding: EdgeInsets.only(left: 20, right: 20, top: 20),
             child: TextField(
+              controller: txtNome,
               decoration: InputDecoration(labelText: 'Nome'),
             ),
           ),
           Padding(
             padding: EdgeInsets.only(left: 20, right: 20, top: 20),
             child: TextField(
+              controller: txtPhone,
               decoration: InputDecoration(labelText: 'Telefone'),
             ),
           ),
           Padding(
             padding: EdgeInsets.only(left: 20, right: 20, top: 20),
             child: TextField(
+              controller: txtEmail,
               decoration: InputDecoration(labelText: 'Email'),
             ),
           ),
           Padding(
             padding: EdgeInsets.only(left: 20, right: 20, top: 20),
             child: TextField(
-              decoration: InputDecoration(labelText: 'Senha'),
+              controller: txtSenha,
+              decoration: InputDecoration(labelText: 'Senha',),
+              obscureText: true,
             ),
           ),
           Padding(
             padding: EdgeInsets.only(left: 20, right: 20, top: 20),
             child: ElevatedButton(
               onPressed: () {
-                
+                LoginController().criarConta(
+                  context,
+                  txtNome.text,
+                  txtEmail.text,
+                  txtSenha.text,
+                );
+                Navigator.pushReplacementNamed(context, 'Login');
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.green[800],
