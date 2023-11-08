@@ -3,7 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
-import '/view/util.dart';
+import '../view/Login/util.dart';
 
 class LoginController {
   //
@@ -28,7 +28,6 @@ class LoginController {
 
       sucesso(context, 'Usuário criado com sucesso.');
       Navigator.pop(context);
-
     }).catchError((e) {
       switch (e.code) {
         case 'email-already-in-use':
@@ -76,7 +75,7 @@ class LoginController {
     Navigator.pop(context);
   }
 
-    //
+  //
   // LOGOUT
   //
   logout() {
@@ -106,5 +105,4 @@ class LoginController {
     );
     return usuario;
   }
-
 }
