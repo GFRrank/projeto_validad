@@ -26,7 +26,6 @@ class Inicio extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //Variáveis locais criadas para detectar o tamanho da tela
     // Assim aumentando da tela e da imagem central de acordo com a tela
     double hig = MediaQuery.of(context).size.height; 
     double wid = MediaQuery.of(context).size.width;

@@ -32,32 +32,12 @@ class Sobre extends StatelessWidget {
             ],
           ),
         ),
-        child: ListView(
+        child: Column(
           children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                const SizedBox(
-                  width: 10,
-                  height: 10,
-                ),
-                Image.asset("assets/gfrlogo.png"),
-                const SizedBox(height: 10),
-                SingleChildScrollView(
-                  child: Container(
-                    height: 1800,
-                    width: 1650,
-                    decoration: const BoxDecoration(
-                      color: Colors.white38,
-                      borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(64),
-                      ),
-                    ),
-                    padding:
-                        const EdgeInsets.only(top: 40, left: 40, right: 40),
-                    child: ListView(
-                      children:[
-                        SizedBox(
+            Image.asset("assets/gfrlogo.png"),
+            Expanded(
+              child: ListView(
+                children: [ SizedBox(
                           width: 90,
                           height: 90,
                           child:
@@ -75,8 +55,7 @@ class Sobre extends StatelessWidget {
                                   TextStyle(fontSize:
                                     15, fontWeight:
                                       FontWeight.w400, color:
-                                        Colors.black))),
-                        ),
+                                       Color.fromARGB(255, 237, 226, 226)))),),
                         const SizedBox(height:
                           30), Center(child:
                             SizedBox(width:
@@ -94,7 +73,7 @@ class Sobre extends StatelessWidget {
                                   TextStyle(fontSize:
                                     15, fontWeight:
                                       FontWeight.w400, color:
-                                        Colors.black)))),
+                                        Color.fromARGB(255, 237, 226, 226))))),
                         const SizedBox(height:
                           50), Container(child:
                             const Center(child:
@@ -109,16 +88,14 @@ class Sobre extends StatelessWidget {
                                     TextStyle(fontSize:
                                       15, fontWeight:
                                         FontWeight.bold, color:
-                                          Colors.black)))),
+                                         Color.fromARGB(255, 237, 226, 226))))),
                       ],
                     ),
-                  ),
-                ),
+                 ),
               ],
             ),
-          ],
-        ),
-      ),
-    );
-  }
-}
+         ),
+      );
+   }
+ }
+              
