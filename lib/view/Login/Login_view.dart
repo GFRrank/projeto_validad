@@ -31,7 +31,6 @@ class _LoginViewState extends State<LoginView> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
-
             const Icon(
               Icons.account_circle,
               size: 180,
@@ -75,10 +74,7 @@ class _LoginViewState extends State<LoginView> {
                   backgroundColor: Colors.green[800],
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30))
                 ),
-                onPressed: () {
-
-
-                  
+                onPressed: () {                  
                   String email = _emailController.text;
                   bool isEmailValid = _emailRegExp.hasMatch(email);
                   String password = _passwordController.text;
@@ -153,6 +149,21 @@ class _LoginViewState extends State<LoginView> {
                 },
                 child: const Text('Login', style: TextStyle(fontWeight: FontWeight.bold),),
               ),
+            ),
+            const SizedBox(height: 30),
+            Row(              
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [                
+                const SizedBox(
+                  child: Text('Nâo está cadastrado?'),
+                ),
+                TextButton(
+                onPressed: () {                  
+                  Navigator.pushReplacementNamed(context, 'Cadastro_App');
+                },
+                child: const Text('Cadastre-se', style: TextStyle(fontWeight: FontWeight.bold))
+                ),
+              ],
             ),
           ],
         ),
