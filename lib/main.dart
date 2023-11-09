@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:device_preview/device_preview.dart';
+import 'package:projeto_valid/view/Cadastro/CadastroApp.dart';
 import 'package:projeto_valid/view/Login/Login_view.dart';
 import 'package:projeto_valid/view/Login/EsqueceuSenha_view.dart';
 import 'package:projeto_valid/view/Cadastro/Cadastro_Func_view.dart';
@@ -56,6 +57,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       initialRoute: 'inicio', // Alterado de 'principal' para 'Inicial'
       routes: {
+        'Cadastro_App': (context) => const CadastroApp(), // Adicione a rota para a tela de CadastroApp
         'inicio': (context) => const Inicio(), // Adicione a rota para a tela de login
         'login': (context) => const LoginView(), // Adicione a rota para a tela de login
         'esqueceu_senha': (context) => EsqueceuSenhaView(), // Adicione a rota para a tela EsqueceuSenhaView
