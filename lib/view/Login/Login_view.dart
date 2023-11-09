@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:projeto_valid/main.dart';
 
+import '../../controller/login_controller.dart';
+
 
 class LoginView extends StatefulWidget {
   const LoginView({Key? key}) : super(key: key);
@@ -11,10 +13,11 @@ class LoginView extends StatefulWidget {
 }
 
 class _LoginViewState extends State<LoginView> {
-  final TextEditingController _emailController = TextEditingController();
-  final TextEditingController _passwordController = TextEditingController();
-  final RegExp _emailRegExp =
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
+  /*final RegExp _emailRegExp =
       RegExp(r'^[a-zA-Z0-9_#%$.]+@(hotmail|outlook|gmail)+.com$');
+  */
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +34,6 @@ class _LoginViewState extends State<LoginView> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
-
             const Icon(
               Icons.account_circle,
               size: 180,
@@ -76,12 +78,13 @@ class _LoginViewState extends State<LoginView> {
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30))
                 ),
                 onPressed: () {
-
+                  
                   String email = _emailController.text;
-                  bool isEmailValid = _emailRegExp.hasMatch(email);
+                 // bool isEmailValid = _emailRegExp.hasMatch(email);
                   String password = _passwordController.text;
-            
-                if (password.length < 8) {
+                
+                /*
+                (if (password.length < 8) {
                   showDialog(
                     context: context,
                     builder: (BuildContext context) {
@@ -146,9 +149,25 @@ class _LoginViewState extends State<LoginView> {
                       },
                   );
                 }
+                */
                 },
                 child: const Text('Login', style: TextStyle(fontWeight: FontWeight.bold),),
               ),
+            ),
+            const SizedBox(height: 30),
+            Row(              
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [                
+                const SizedBox(
+                  child: Text('Nâo está cadastrado?'),
+                ),
+                TextButton(
+                onPressed: () {                  
+                  Navigator.pushReplacementNamed(context, 'Cadastro_App');
+                },
+                child: const Text('Cadastre-se', style: TextStyle(fontWeight: FontWeight.bold))
+                ),
+              ],
             ),
           ],
         ),
