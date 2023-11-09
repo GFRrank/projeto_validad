@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:device_preview/device_preview.dart';
 import 'package:projeto_valid/view/Cadastro/CadastroApp.dart';
+import 'package:device_preview/device_preview.dart';
 import 'package:projeto_valid/view/Login/Login_view.dart';
 import 'package:projeto_valid/view/Login/EsqueceuSenha_view.dart';
 import 'package:projeto_valid/view/Cadastro/Cadastro_Func_view.dart';
