@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-
+import 'package:firebase_core/firebase_core.dart';
 import '../view/Login/util.dart';
 
 class LoginController {
@@ -49,7 +49,7 @@ class LoginController {
         .signInWithEmailAndPassword(email: email, password: senha)
         .then((value) {
       sucesso(context, 'Usuário autenticado com sucesso.');
-      Navigator.pushNamed(context, 'principal');
+      Navigator.pushNamed(context, 'hub_screen');
     }).catchError((e) {
       switch (e.code) {
         case 'user-not-found':

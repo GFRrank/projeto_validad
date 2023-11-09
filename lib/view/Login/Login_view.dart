@@ -15,9 +15,6 @@ class LoginView extends StatefulWidget {
 class _LoginViewState extends State<LoginView> {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
-  /*final RegExp _emailRegExp =
-      RegExp(r'^[a-zA-Z0-9_#%$.]+@(hotmail|outlook|gmail)+.com$');
-  */
 
   @override
   Widget build(BuildContext context) {
@@ -78,78 +75,11 @@ class _LoginViewState extends State<LoginView> {
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30))
                 ),
                 onPressed: () {
-                  
-                  String email = _emailController.text;
-                 // bool isEmailValid = _emailRegExp.hasMatch(email);
-                  String password = _passwordController.text;
-                
-                /*
-                (if (password.length < 8) {
-                  showDialog(
-                    context: context,
-                    builder: (BuildContext context) {
-                      return AlertDialog(
-                        title: const Text('Erro'),
-                        content:
-                          const Text('A senha deve ter pelo menos 8 caracteres.'),
-                        actions: <Widget>[
-                          TextButton(
-                            child: const Text('OK'),
-                            onPressed: () {
-                              Navigator.of(context).pop();
-                            },
-                          ),
-                        ],
-                      );
-                    },
+                  LoginController().login(
+                  context,
+                  _emailController.text,
+                  _passwordController.text,
                   );
-                } else if (password == '') {
-                  showDialog(
-                    context: context,
-                    builder: (BuildContext context) {
-                      return AlertDialog(
-                        title: const Text('Erro'),
-                        content:
-                          const Text('Por favor, insira uma senha.'),
-                        actions: <Widget>[
-                          TextButton(
-                            child: const Text('OK'),
-                            onPressed: () {
-                              Navigator.of(context).pop();
-                            },
-                          ),
-                        ],
-                      );
-                    },
-                  );
-                } else if (isEmailValid) {
-                    Navigator.pushReplacementNamed(context, 'hub_screen');
-                } else {
-                  showDialog(
-                    context: context,
-                    builder:
-                      (BuildContext context) {
-                        return AlertDialog(
-                          title:
-                            const Text('Erro'),
-                          content:
-                            const Text('Por favor, insira um email válido.'),
-                          actions:
-                            <Widget>[
-                              TextButton(
-                                child:
-                                  const Text('OK'),
-                                onPressed:
-                                () {
-                                  Navigator.of(context).pop();
-                                },
-                              ),
-                            ],
-                        );
-                      },
-                  );
-                }
-                */
                 },
                 child: const Text('Login', style: TextStyle(fontWeight: FontWeight.bold),),
               ),
@@ -169,6 +99,12 @@ class _LoginViewState extends State<LoginView> {
                 ),
               ],
             ),
+                TextButton(
+                onPressed: () {                  
+                  Navigator.pushReplacementNamed(context, 'esqueceu_senha');
+                },
+                child: const Text('Esqueceu a senha?', style: TextStyle(fontWeight: FontWeight.bold))
+                ),
           ],
         ),
       ),
