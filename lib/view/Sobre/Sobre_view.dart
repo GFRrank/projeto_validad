@@ -74,21 +74,25 @@ class Sobre extends StatelessWidget {
                                     15, fontWeight:
                                       FontWeight.w400, color:
                                         Color.fromARGB(255, 237, 226, 226))))),
-                        const SizedBox(height:
-                          50), Container(child:
-                            const Center(child:
-                              Text("O aplicativo Validad é uma solução inovadora de controle de validade móvel,\n"
-                                "projetada especificamente para empresas de médio a grande porte.\n"
-                                "Este aplicativo oferece uma maneira eficiente e eficaz de gerenciar e monitorar a validade dos produtos,\n"
-                                "garantindo que as empresas estejam sempre em conformidade com as regulamentações e normas do setor.\n"
-                                "Com o Validad, as empresas podem evitar desperdícios desnecessários,\n"
-                                "melhorar a eficiência operacional e aumentar a satisfação do cliente.",
+                        const SizedBox(height: 50
+                          ), Container( width: 300, child: 
+                            const Center(child: 
+                              Text(" O aplicativo Validad é uma solução inovadora de controle de validade móvel,"
+                                " projetada especificamente para empresas de médio a grande porte. "
+                                " Este aplicativo oferece uma maneira eficiente e eficaz de gerenciar e monitorar a validade dos produtos, "
+                                " garantindo que as empresas estejam sempre em conformidade com as regulamentações e normas do setor. "
+                                " Com o Validad, as empresas podem evitar desperdícios desnecessários, "
+                                " melhorar a eficiência operacional e aumentar a satisfação do cliente. ",
                                 textAlign:
                                   TextAlign.justify, style:
                                     TextStyle(fontSize:
                                       15, fontWeight:
                                         FontWeight.bold, color:
-                                         Color.fromARGB(255, 237, 226, 226))))),
+                                         Color.fromARGB(255, 237, 226, 226)
+                                         )
+                                         )
+                                         )
+                                         ),
                       ],
                     ),
                  ),

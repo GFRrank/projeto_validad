@@ -77,8 +77,6 @@ class _LoginViewState extends State<LoginView> {
                 ),
                 onPressed: () {
 
-
-                  
                   String email = _emailController.text;
                   bool isEmailValid = _emailRegExp.hasMatch(email);
                   String password = _passwordController.text;
@@ -122,8 +120,6 @@ class _LoginViewState extends State<LoginView> {
                     },
                   );
                 } else if (isEmailValid) {
-                  // Lógica de autenticação aqui
-                  // Após a autenticação bem-sucedida, redirecione para HubScreen
                     Navigator.pushReplacementNamed(context, 'hub_screen');
                 } else {
                   showDialog(
