@@ -28,6 +28,7 @@ class _CadastroAppState extends State<CadastroApp> {
   var txtNome = TextEditingController();
   var txtPhone = TextEditingController();
   var txtSenha = TextEditingController();
+  var txtID =    TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -71,6 +72,14 @@ class _CadastroAppState extends State<CadastroApp> {
           ),
           Padding(
             padding: EdgeInsets.only(left: 20, right: 20, top: 20),
+            child: TextField(
+              controller: txtID,
+              decoration: InputDecoration(labelText: 'ID',),
+              obscureText: true,
+            ),
+          ),
+          Padding(
+            padding: EdgeInsets.only(left: 20, right: 20, top: 20),
             child: ElevatedButton(
               onPressed: () {
                 LoginController().criarConta(
@@ -78,6 +87,7 @@ class _CadastroAppState extends State<CadastroApp> {
                   txtNome.text,
                   txtEmail.text,
                   txtSenha.text,
+                  txtID.text,
                 );
                 Navigator.pushReplacementNamed(context, 'Login');
               },
