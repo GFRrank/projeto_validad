@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:projeto_valid/main.dart';
 
 void main() {
   runApp(MaterialApp(
@@ -39,22 +40,6 @@ class _ProdutosState extends State<Produtos> with AutomaticKeepAliveClientMixin 
       'category': category,
     });
     print('Produto adicionado.');
-  }
-
-  Widget degradeVerde () {
-    return Container(
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-            colors: [
-              const Color.fromARGB(255, 0, 117, 35).withOpacity(1.0),
-              const Color.fromARGB(255, 0, 0, 0).withOpacity(1.0),
-              const Color.fromARGB(255, 0, 255, 42).withOpacity(1.0),
-            ],
-          ),
-        ),
-    );
   }
 
   @override
@@ -112,7 +97,11 @@ class _ProdutosState extends State<Produtos> with AutomaticKeepAliveClientMixin 
                         addProduct(_nameController.text, _categoryController.text);
                       }
                     },
-                    child: Text('Adicionar Produto'),
+                    child: Text('Adicionar Produtos', style: TextStyle(fontWeight: FontWeight.bold)),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.green[800],
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30))
+                  ),
                   ),
                 ],
               ),
@@ -172,6 +161,7 @@ class _ProdutosState extends State<Produtos> with AutomaticKeepAliveClientMixin 
                       );
                     },
                   ),
+                  
                   StreamBuilder<QuerySnapshot>(
                     stream: _productsStream,
                     builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
@@ -207,9 +197,36 @@ class _ProdutosState extends State<Produtos> with AutomaticKeepAliveClientMixin 
         floatingActionButton: FloatingActionButton(
           onPressed: () => addProduct('Nome do Produto', 'Rebaixa'), // Altere esses valores conforme necessário.
           tooltip: 'Adicionar Produto',
-          child: Icon(Icons.add),
-        ),
+           child: Icon(
+              Icons.add,
+              color: Colors.white,
+            ),
+            backgroundColor: Colors.green[800],
+          )
       ),
     );
   }
 }
+
+/*StreamBuilder<QuerySnapshot>(
+  stream: _productsStream,
+  builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+    if (snapshot.hasError) {
+      return Text('Algo deu errado');
+    }
+
+    if (snapshot.connectionState == ConnectionState.waiting) {
+      return Text("Carregando");
+    }
+
+    return ListView(
+      children: snapshot.data!.docs.map((DocumentSnapshot document) {
+        Map<String, dynamic> data = document.data()! as Map<String, dynamic>;
+        return ListTile(
+          title: Text(data['name']),
+          subtitle: Text(data['category']),
+        );
+      }).toList(),
+    );
+  },
+)*/

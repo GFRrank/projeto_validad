@@ -1,23 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:projeto_valid/main.dart';
 
 class Sobre extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+         flexibleSpace: degradeVerde(),
         title: const Text(
           "Desenvolvedores",
           style: TextStyle(
             fontSize: 20,
             fontWeight: FontWeight.bold,
-            color: Colors.black,
+            color: Colors.white,
           ),
-        ),
-        backgroundColor: Colors.white54,
-        leading: IconButton(
-          onPressed: () => Navigator.pop(context, false),
-          icon: const Icon(Icons.arrow_back),
-          color: Colors.black38,
         ),
       ),
       body: Container(

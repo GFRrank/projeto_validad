@@ -8,21 +8,6 @@ class CadastroApp extends StatefulWidget {
   _CadastroAppState createState() => _CadastroAppState();
 }
 
-/*void Caixar() async {
-  List<String> DadosCadastrais = ['Nome', 'Telefone', 'Email', 'Senha'];
-  List<Widget> CaixasDeTexto = [];
-  int i = 0;
-    for (var DadosCadastrais in DadosCadastrais) {
-      Padding(
-        padding: EdgeInsets.all(0),
-        child: TextField(
-          decoration: InputDecoration(labelText: DadosCadastrais[i]),
-        ),
-      );
-    i++;
-  }
-}
-*/
 class _CadastroAppState extends State<CadastroApp> {
   var txtEmail = TextEditingController();
   var txtNome = TextEditingController();
@@ -87,7 +72,6 @@ class _CadastroAppState extends State<CadastroApp> {
                   txtNome.text,
                   txtEmail.text,
                   txtSenha.text,
-                  txtID.text,
                 );
                 Navigator.pushReplacementNamed(context, 'Login');
               },

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:spreadsheet_decoder/spreadsheet_decoder.dart';
+import 'package:projeto_valid/main.dart';
 
 void main() {
   runApp(MaterialApp(
@@ -49,6 +50,7 @@ class _ExcelDataViewerState extends State<ExcelDataViewer> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        flexibleSpace: degradeVerde(),
         title: const Text('Excel Data Viewer'),
       ),
       body: isLoading ? CircularProgressIndicator() : SingleChildScrollView(

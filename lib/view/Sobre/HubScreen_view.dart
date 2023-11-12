@@ -45,25 +45,23 @@ class HubScreen extends StatelessWidget {
                   ],
                 ),
               ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
                   Container(
                     child: SizedBox(
-                      child:
-                        Image.asset("assets/gfrlogo.png", color: Colors.white, scale: 3),
+                      child: Image.asset("assets/gfrlogo.png", color: Colors.white, scale: 1.5), // Aumente o tamanho da logo diminuindo o valor do scale
                     ),
                   ),
                   const SizedBox(width: 10),
-                   // Adicione espaço entre a imagem e o texto
-                  const SizedBox(
-                    child: Text('Menu',
-                      style: TextStyle(
-                        fontSize: 36,
-                        color: Colors.white, 
-                      ),
-                      textAlign: TextAlign.end,
+                  // Adicione espaço entre a imagem e o texto
+                  const Text(
+                    'Menu',
+                    style: TextStyle(
+                      fontSize: 36,
+                      color: Colors.white,
                     ),
+                    textAlign: TextAlign.end,
                   ),
                 ],
               ),

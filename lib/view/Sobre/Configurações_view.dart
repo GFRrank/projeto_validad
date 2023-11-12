@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:projeto_valid/main.dart';
+//import 'package:flutter_gen/gen_l10n/app_localizations.dart'; // Importe o arquivo gerado pelo Flutter Intl
 
 class Config extends StatefulWidget {
   final _formKey = GlobalKey<FormState>();
@@ -17,8 +20,15 @@ class _ConfigState extends State<Config> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-       // flexibleSpace: degradeVerde(), 
-        title: Text('Configurações'),
+        flexibleSpace: degradeVerde(), 
+         title: const Text(
+          "Configurações",
+          style: TextStyle(
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
+          ),
+        ),
       ),
       body: ListView(
         children: <Widget>[
@@ -47,6 +57,8 @@ class _ConfigState extends State<Config> {
               onChanged: (String? newValue) {
                 setState(() {
                   _language = newValue!;
+                  // Atualize o idioma do aplicativo
+                 // AppLocalizations.load(Locale(_language));
                 });
               },
             ),
@@ -73,8 +85,11 @@ class _ConfigState extends State<Config> {
             height: 30,
           ),
           ElevatedButton(
-            child: Text('Sair'),
+            style: ElevatedButton.styleFrom( backgroundColor: Colors.green[800],
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50))),
+            child: Text('Sair', style: TextStyle(fontWeight: FontWeight.bold)),
             onPressed: () {
+             
               Navigator.pushNamed(context, 'inicio');
             },
           ),

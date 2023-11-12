@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:projeto_valid/view/Login/Login_view.dart';
+import 'package:projeto_valid/main.dart';
 
 
 class EsqueceuSenhaView extends StatelessWidget {
@@ -11,7 +12,9 @@ class EsqueceuSenhaView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Esqueceu a Senha'),
+        flexibleSpace: degradeVerde(),
+        centerTitle: true,
+        title: Text('Esqueceu Senha'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -23,7 +26,10 @@ class EsqueceuSenhaView extends StatelessWidget {
               keyboardType: TextInputType.emailAddress,
             ),
             const SizedBox(height: 20),
+          
             ElevatedButton(
+              style: ElevatedButton.styleFrom( backgroundColor: Colors.green[800],
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50))),
               onPressed: () {
                 // Lógica para enviar email de redefinição de senha
                 String email = _emailController.text;

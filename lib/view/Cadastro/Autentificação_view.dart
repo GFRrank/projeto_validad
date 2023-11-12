@@ -58,7 +58,7 @@ class _AutenticacaoState extends State<Autenticacao> {
                   decoration: InputDecoration(
                     enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(32),
-                      borderSide: BorderSide(color: Colors.blue),
+                      borderSide: BorderSide(color: Colors.green),
                     ),
                   ),
                   value: CargoSelecionado,
@@ -97,3 +97,4 @@ class _AutenticacaoState extends State<Autenticacao> {
     );
   }
 }
+

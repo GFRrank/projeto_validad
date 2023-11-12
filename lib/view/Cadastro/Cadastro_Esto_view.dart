@@ -99,13 +99,8 @@ class _CadastroEstoqueState extends State<CadastroEstoque> {
                 height: 30,
               ),
               ElevatedButton(
-                style: ButtonStyle(
-                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                    RoundedRectangleBorder(
-                      borderRadius: BorderRadius.zero,
-                    ),
-                  ),
-                ),
+                style: ElevatedButton.styleFrom( backgroundColor: Colors.green[800],
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50))),
                 onPressed: () {
                   if (_formKey.currentState?.validate() ?? false) {
                     ScaffoldMessenger.of(context).showSnackBar(
