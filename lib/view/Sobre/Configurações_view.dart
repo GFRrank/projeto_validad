@@ -26,7 +26,7 @@ class _ConfigState extends State<Config> {
           style: TextStyle(
             fontSize: 20,
             fontWeight: FontWeight.bold,
-            color: Colors.white,
+            color: Colors.white54,
           ),
         ),
       ),
