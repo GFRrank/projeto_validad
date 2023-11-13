@@ -84,14 +84,17 @@ class _ConfigState extends State<Config> {
           SizedBox(
             height: 30,
           ),
-          ElevatedButton(
-            style: ElevatedButton.styleFrom( backgroundColor: Colors.green[800],
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50))),
-            child: Text('Sair', style: TextStyle(fontWeight: FontWeight.bold)),
-            onPressed: () {
-             
-              Navigator.pushNamed(context, 'inicio');
-            },
+          Container(
+            width: 120,
+            child: ElevatedButton(
+              style: ElevatedButton.styleFrom( backgroundColor: Colors.green[800],
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50))),
+              child: Text('Sair', style: TextStyle(fontWeight: FontWeight.bold)),
+              onPressed: () {
+               
+                Navigator.pushNamed(context, 'inicio');
+              },
+            ),
           ),
         ],
       ),

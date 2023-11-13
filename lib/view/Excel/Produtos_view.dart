@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:projeto_valid/controller/produtos_controller.dart';
 import 'package:projeto_valid/main.dart';
 
 void main() {
@@ -110,17 +111,46 @@ class _ProdutosState extends State<Produtos> with AutomaticKeepAliveClientMixin 
               child: TabBarView(
                 children: [
                   StreamBuilder<QuerySnapshot>(
-                    stream: _productsStream,
+                    stream: ProdutoController().listar().snapshots(),
                     builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
-                      if (snapshot.hasError) {
-                        return Text('Algo deu errado');
+                      switch (snapshot.connectionState) {
+                        case ConnectionState.none:
+                          return Center(
+                            child: Text('Não foi possível conectar.'),
+                          );
+                        case ConnectionState.waiting:
+                          return const Center(
+                            child: CircularProgressIndicator(),
+                          );
+                          default:
+                            final dados = snapshot.requireData;
+                            if (dados.size > 0) {
+                              return ListView.builder(
+                                itemCount: dados.size,
+                                itemBuilder: (context, index) {
+                                  String id = dados.docs[index].id;
+                                  dynamic item = dados.docs[index].data();
+                                  return Card(
+                                    child: ListTile(
+                                      leading: Icon(Icons.description),
+                                      title: Text(item['titulo']),
+                                      subtitle: Text(item['descricao']),
+                        ),
+                      );
+                    }
+                  );
+                }else {
+                  return Center(
+                    child: Text('Nenhum produto encontrada.'),
+                  );
+                }
                       }
+                    }
+                  ),
 
-                      if (snapshot.connectionState == ConnectionState.waiting) {
-                        return Text("Carregando");
-                      }
+                      
 
-                      return ListView(
+       /*               return ListView(
                         children: snapshot.data!.docs.map((DocumentSnapshot document) {
                           Map<String, dynamic> data = document.data()! as Map<String, dynamic>;
                           if (data['category'] == 'Rebaixa') {
@@ -134,7 +164,8 @@ class _ProdutosState extends State<Produtos> with AutomaticKeepAliveClientMixin 
                         }).toList(),
                       );
                     },
-                  ),
+                  ),*/
+                  
                   StreamBuilder<QuerySnapshot>(
                     stream: _productsStream,
                     builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {

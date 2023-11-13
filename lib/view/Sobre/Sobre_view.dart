@@ -71,24 +71,27 @@ class Sobre extends StatelessWidget {
                                       FontWeight.w400, color:
                                         Color.fromARGB(255, 237, 226, 226))))),
                         const SizedBox(height: 50
-                          ), Container( width: 300, child: 
-                            const Center(child: 
-                              Text(" O aplicativo Validad é uma solução inovadora de controle de validade móvel,"
-                                " projetada especificamente para empresas de médio a grande porte. "
-                                " Este aplicativo oferece uma maneira eficiente e eficaz de gerenciar e monitorar a validade dos produtos, "
-                                " garantindo que as empresas estejam sempre em conformidade com as regulamentações e normas do setor. "
-                                " Com o Validad, as empresas podem evitar desperdícios desnecessários, "
-                                " melhorar a eficiência operacional e aumentar a satisfação do cliente. ",
-                                textAlign:
-                                  TextAlign.justify, style:
-                                    TextStyle(fontSize:
-                                      15, fontWeight:
-                                        FontWeight.bold, color:
-                                         Color.fromARGB(255, 237, 226, 226)
-                                         )
-                                         )
-                                         )
-                                         ),
+                          ), Padding(
+                            padding: const EdgeInsets.all(14.0),
+                            child: Container( width: 300, child: 
+                              const Center(child: 
+                                Text(" O aplicativo Validad é uma solução inovadora de controle de validade móvel,"
+                                  " projetada especificamente para empresas de médio a grande porte. "
+                                  " Este aplicativo oferece uma maneira eficiente e eficaz de gerenciar e monitorar a validade dos produtos, "
+                                  " garantindo que as empresas estejam sempre em conformidade com as regulamentações e normas do setor. "
+                                  " Com o Validad, as empresas podem evitar desperdícios desnecessários, "
+                                  " melhorar a eficiência operacional e aumentar a satisfação do cliente. ",
+                                  textAlign:
+                                    TextAlign.justify, style:
+                                      TextStyle(fontSize:
+                                        15, fontWeight:
+                                          FontWeight.bold, color:
+                                           Color.fromARGB(255, 237, 226, 226)
+                                           )
+                                           )
+                                           )
+                                           ),
+                          ),
                       ],
                     ),
                  ),
