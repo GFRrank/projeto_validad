@@ -1,28 +1,27 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-//import 'package:firebase_core/firebase_core.dart';
 import '../view/Login/util.dart';
 
-class LoginController {
-  //
-  // CRIAR CONTA
-  // Adiciona a conta de um novo usuário no serviço
-  // Firebase Authentication
-  //
-  criarConta(context, nome, email, senha ) {
+    
+    class LoginController {
+    criarConta(context, nome, email, senha, id, telefone, loja, cargo, setor) {
     FirebaseAuth.instance
         .createUserWithEmailAndPassword(
       email: email,
       password: senha,
-      
     )
         .then((resultado) {
-      //Armazenar o NOME do usuário no Firestore
-      FirebaseFirestore.instance.collection('usuarios').add(
+      // Armazenar o NOME do usuário e outras informações no Firestore
+      FirebaseFirestore.instance.collection('usuarios').doc(resultado.user!.uid).set(
         {
           'uid': resultado.user!.uid,
           'nome': nome,
+          'id': id,
+          'telefone': telefone,
+          'loja': loja,
+          'cargo': cargo,
+          'setor': setor,
         },
       );
 
@@ -35,6 +34,27 @@ class LoginController {
           break;
         case 'invalid-email':
           erro(context, 'O email informado é inválido.');
+          break;
+        default:
+          erro(context, 'ERRO: ${e.code.toString()}');
+      }
+    });
+  }
+
+  //
+  // AUTENTICAR
+  //
+
+  autenticar(context, cargo, id) {
+    FirebaseAuth.instance
+        .signInWithEmailAndPassword(email: id, password: cargo)
+        .then((value) {
+      sucesso(context, 'Usuário autenticado com sucesso.');
+      Navigator.pushNamed(context, 'hub_screen');
+    }).catchError((e) {
+      switch (e.code) {
+        case 'user-not-found':
+          erro(context, 'Usuário não encontrado.');
           break;
         default:
           erro(context, 'ERRO: ${e.code.toString()}');
@@ -61,6 +81,7 @@ class LoginController {
       }
     });
   }
+
 
   //
   // ESQUECEU A SENHA
@@ -105,4 +126,6 @@ class LoginController {
     );
     return usuario;
   }
-}
+    }
+
+

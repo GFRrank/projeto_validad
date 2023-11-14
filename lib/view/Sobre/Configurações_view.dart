@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:projeto_valid/main.dart';
+import '../../controller/login_controller.dart';
+
 //import 'package:flutter_gen/gen_l10n/app_localizations.dart'; // Importe o arquivo gerado pelo Flutter Intl
 
 class Config extends StatefulWidget {
@@ -26,11 +27,11 @@ class _ConfigState extends State<Config> {
           style: TextStyle(
             fontSize: 20,
             fontWeight: FontWeight.bold,
-            color: Colors.white54,
+            color: Colors.white,
           ),
         ),
       ),
-      body: ListView(
+      body: Column(
         children: <Widget>[
           ListTile(
             title: Text('Notificações'),
@@ -91,7 +92,7 @@ class _ConfigState extends State<Config> {
                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50))),
               child: Text('Sair', style: TextStyle(fontWeight: FontWeight.bold)),
               onPressed: () {
-               
+                 LoginController().logout();
                 Navigator.pushNamed(context, 'inicio');
               },
             ),

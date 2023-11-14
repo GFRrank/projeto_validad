@@ -239,7 +239,8 @@ class _ProdutosState extends State<Produtos> with AutomaticKeepAliveClientMixin 
   }
 }
 
-/*StreamBuilder<QuerySnapshot>(
+/*
+StreamBuilder<QuerySnapshot>(
   stream: _productsStream,
   builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
     if (snapshot.hasError) {

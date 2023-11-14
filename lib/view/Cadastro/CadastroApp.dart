@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../controller/login_controller.dart';
 import '../../main.dart';
+import 'package:projeto_valid/view/Cadastro/Autentifica%C3%A7%C3%A3o_view.dart';
 
 class CadastroApp extends StatefulWidget {
   const CadastroApp({super.key});
@@ -13,7 +14,14 @@ class _CadastroAppState extends State<CadastroApp> {
   var txtNome = TextEditingController();
   var txtPhone = TextEditingController();
   var txtSenha = TextEditingController();
-  var txtID =    TextEditingController();
+  var txtID    = TextEditingController();
+  var txtCargo = TextEditingController();
+  var txtSetor = TextEditingController();
+  var txtLoja =  TextEditingController();
+   
+   List<String> Cargos = ['Funcionário Comum', 'Gerente'];
+  String? CargoSelecionado = 'Funcionário Comum';
+
 
   @override
   Widget build(BuildContext context) {
@@ -63,6 +71,24 @@ class _CadastroAppState extends State<CadastroApp> {
               obscureText: true,
             ),
           ),
+          SizedBox(
+                width: 200,
+                height: 60,
+                child: DropdownButtonFormField(
+                  decoration: InputDecoration(
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(32),
+                      borderSide: BorderSide(color: Colors.green),
+                    ),
+                  ),
+                  value: CargoSelecionado,
+                  items: Cargos.map((cargo) => DropdownMenuItem(
+                    value: cargo,
+                    child: Text(cargo),
+                    )).toList(),
+                  onChanged: (cargo) => setState(() => CargoSelecionado = cargo), 
+                  ),
+              ),
           Padding(
             padding: EdgeInsets.only(left: 20, right: 20, top: 20),
             child: ElevatedButton(
@@ -72,7 +98,14 @@ class _CadastroAppState extends State<CadastroApp> {
                   txtNome.text,
                   txtEmail.text,
                   txtSenha.text,
+                  txtID.text,
+                  txtPhone.text,
+                  txtLoja.text,
+                  txtCargo.text,
+                  txtSetor.text,
                 );
+
+                
                 Navigator.pushReplacementNamed(context, 'Login');
               },
               style: ElevatedButton.styleFrom(

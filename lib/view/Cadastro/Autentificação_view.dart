@@ -1,17 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:projeto_valid/controller/login_controller.dart';
 import 'package:projeto_valid/main.dart';
 
 class Autenticacao extends StatefulWidget {
   @override
   _AutenticacaoState createState() => _AutenticacaoState();
+  var txtEmail = TextEditingController();
+  var txtNome = TextEditingController();
+  var txtPhone = TextEditingController();
+  var txtSenha = TextEditingController();
+  var txtID    = TextEditingController();
+  var txtCargo = TextEditingController();
+  var txtSetor = TextEditingController();
+  var txtLoja =  TextEditingController();
 }
+
 class _AutenticacaoState extends State<Autenticacao> {
   List<String> Cargos = ['Funcionário Comum', 'Gerente'];
   String? CargoSelecionado = 'Funcionário Comum';
   final _formKey = GlobalKey<FormState>();
   final _idController = TextEditingController();
-  //final _cargoController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -40,12 +49,6 @@ class _AutenticacaoState extends State<Autenticacao> {
                         borderRadius: BorderRadius.all(Radius.elliptical(50, 50))
                     )
                   ),
-                  validator: (String? value) {
-                    if (value == null || value.isEmpty || value.length != 10) {
-                      return 'Por favor, insira um ID válido com 10 caracteres';
-                    }
-                    return null;
-                  },
                 ),
               ),
               const SizedBox(
@@ -72,14 +75,15 @@ class _AutenticacaoState extends State<Autenticacao> {
               const SizedBox(
                 height: 30,
               ),
+              SizedBox(height: 20),
+
               SizedBox(
                 height: 45,
                 width: 150,
                 child: ElevatedButton(
                   onPressed: () {
                     if (_formKey.currentState!.validate()) {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(content: Text('Processando Dados')));
+                      LoginController().autenticar(context, _idController.text, CargoSelecionado );
                       Navigator.pushNamed(context, 'login');
                     }
                   },
@@ -97,4 +101,3 @@ class _AutenticacaoState extends State<Autenticacao> {
     );
   }
 }
-
