@@ -10,7 +10,7 @@ class CadastroApp extends StatefulWidget {
 }
 
 class _CadastroAppState extends State<CadastroApp> {
-  
+  var txtEmail = TextEditingController();
   var txtNome = TextEditingController();
   var txtPhone = TextEditingController();
   var txtSenha = TextEditingController();
