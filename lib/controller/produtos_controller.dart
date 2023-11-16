@@ -50,9 +50,16 @@ class ProdutoController {
   //
   // LISTAR todas as Tarefas da coleção
   //
-  listar() {
+ listar() {
+  var idUsuario = LoginController().idUsuario();
+  if (idUsuario != null) {
     return FirebaseFirestore.instance
         .collection('products')
-        .where('uid', isEqualTo: LoginController().idUsuario());
+        .where('uid', isEqualTo: idUsuario);
+  } else {
+    // Trate o caso em que idUsuario é nulo
+    print('ID do usuário é nulo');
+    return Stream.empty();
   }
+}
 }

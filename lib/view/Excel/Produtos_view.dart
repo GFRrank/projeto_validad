@@ -148,24 +148,6 @@ class _ProdutosState extends State<Produtos> with AutomaticKeepAliveClientMixin 
                     }
                   ),
 
-                      
-
-       /*               return ListView(
-                        children: snapshot.data!.docs.map((DocumentSnapshot document) {
-                          Map<String, dynamic> data = document.data()! as Map<String, dynamic>;
-                          if (data['category'] == 'Rebaixa') {
-                            return ListTile(
-                              title: Text(data['name']),
-                              subtitle: Text('Categoria: ${data['category']}'),
-                            );
-                          } else {
-                            return Container();
-                          }
-                        }).toList(),
-                      );
-                    },
-                  ),*/
-                  
                   StreamBuilder<QuerySnapshot>(
                     stream: _productsStream,
                     builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
@@ -190,6 +172,7 @@ class _ProdutosState extends State<Produtos> with AutomaticKeepAliveClientMixin 
                           }
                         }).toList(),
                       );
+                      
                     },
                   ),
                   
@@ -212,6 +195,7 @@ class _ProdutosState extends State<Produtos> with AutomaticKeepAliveClientMixin 
                               title: Text(data['name']),
                               subtitle: Text('Categoria: ${data['category']}'),
                             );
+                            
                           } else {
                             return Container();
                           }
@@ -219,7 +203,33 @@ class _ProdutosState extends State<Produtos> with AutomaticKeepAliveClientMixin 
                       );
                     },
                   ),
-                 
+                  StreamBuilder<QuerySnapshot>(
+                    stream: _productsStream,
+                    builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+                      if (snapshot.hasError) {
+                        return Text('Algo deu errado');
+                      }
+
+                      if (snapshot.connectionState == ConnectionState.waiting) {
+                        return Text("Carregando");
+                      }
+
+                      return ListView(
+                        children: snapshot.data!.docs.map((DocumentSnapshot document) {
+                          Map<String, dynamic> data = document.data()! as Map<String, dynamic>;
+                          if (data['category'] == 'Rebaixa') {
+                            return ListTile(
+                              title: Text(data['name']),
+                              subtitle: Text('Categoria: ${data['category']}'),
+                            );
+                            
+                          } else {
+                            return Container();
+                          }
+                        }).toList(),
+                      );
+                    },
+                  ),
                 ],
               ),
             ),
@@ -238,27 +248,3 @@ class _ProdutosState extends State<Produtos> with AutomaticKeepAliveClientMixin 
     );
   }
 }
-
-/*
-StreamBuilder<QuerySnapshot>(
-  stream: _productsStream,
-  builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
-    if (snapshot.hasError) {
-      return Text('Algo deu errado');
-    }
-
-    if (snapshot.connectionState == ConnectionState.waiting) {
-      return Text("Carregando");
-    }
-
-    return ListView(
-      children: snapshot.data!.docs.map((DocumentSnapshot document) {
-        Map<String, dynamic> data = document.data()! as Map<String, dynamic>;
-        return ListTile(
-          title: Text(data['name']),
-          subtitle: Text(data['category']),
-        );
-      }).toList(),
-    );
-  },
-)*/

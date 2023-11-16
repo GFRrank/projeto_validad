@@ -80,11 +80,14 @@ class _AutenticacaoState extends State<Autenticacao> {
               SizedBox(
                 height: 45,
                 width: 150,
-                child: ElevatedButton(
-                  onPressed: () {
+                child:ElevatedButton(
+                  onPressed: () async {
                     if (_formKey.currentState!.validate()) {
-                      LoginController().autenticar(context, _idController.text, CargoSelecionado );
-                      Navigator.pushNamed(context, 'login');
+                      bool idExiste = await LoginController().verificarID(_idController.text);
+                      if (idExiste) {
+                        LoginController().autenticar(context, _idController.text, CargoSelecionado);
+                        Navigator.pushNamed(context, 'login');
+                      } 
                     }
                   },
                   child: Text('Autenticar', style: TextStyle(fontWeight: FontWeight.bold)),

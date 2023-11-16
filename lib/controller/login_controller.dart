@@ -62,6 +62,16 @@ import '../view/Login/util.dart';
     });
   }
 
+
+    //
+    //VERIFICA ID
+    //
+  Future<bool> verificarID(String id) async {
+  final docSnapshot = await FirebaseFirestore.instance.collection('usuarios').doc(id).get();
+  return docSnapshot.exists;
+}
+
+
   //
   // LOGIN
   //
