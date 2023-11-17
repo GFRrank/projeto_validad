@@ -58,18 +58,18 @@ class MyApp extends StatelessWidget {
       initialRoute: 'inicio', // Alterado de 'principal' para 'Inicial'
       routes: {
         'Cadastro_App': (context) => const CadastroApp(), // Adicione a rota para a tela de CadastroApp
-        'inicio': (context) => const Inicio(), // Adicione a rota para a tela de login
+        'inicio': (context) => const Inicio(), // Adicione a rota para a tela de inicio
         'login': (context) => const LoginView(), // Adicione a rota para a tela de login
         'esqueceu_senha': (context) => EsqueceuSenhaView(), // Adicione a rota para a tela EsqueceuSenhaView
         'hub_screen': (context) => const HubScreen(), // Adicione a rota para a tela HubScreenView
-        'cadastro_func': (context) => CadastroFunc(), // Adicione esta linha
-        'produtos': (context) =>  Produtos(), // Adicione esta linha
-        'sobre': (context) =>  Sobre(), // Adicione esta linha
-        'configuraçoes': (context) =>  Config(), // Adicione esta linha
-        'autent': (context) =>  Autenticacao(), // Adicione esta 
-        'excel': (context) =>  ExcelDataViewer(), // Adicione esta linha
-        'whatsapp': (context) => WhatsappView(), // Adicione esta linha
-        'detalhes': (context) => Detalhes(), // Adicione esta linha
+        'cadastro_func': (context) => CadastroFunc(), // Adicione a rota para a tela CadastroFunc
+        'produtos': (context) =>  Produtos(), // Adicione a rota para a tela Produtos
+        'sobre': (context) =>  Sobre(), // Adicione a rota para a tela Sobre
+        'configuraçoes': (context) =>  Config(), // Adicione a rota para a tela Configurações
+        'autent': (context) =>  Autenticacao(), // Adicione esta rota para a tela Autenticação
+        'excel': (context) =>  ExcelDataViewer(), // Adicione esta rota para a tela Excel
+        'whatsapp': (context) => WhatsappView(), // Adicione esta rota para a tela Whatsapp
+        'detalhes': (context) => Detalhes(), // Adicione esta rota para a tela Detalhes
       },
     );
   }
