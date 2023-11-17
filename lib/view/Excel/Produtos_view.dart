@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:projeto_valid/controller/produtos_controller.dart';
 import 'package:projeto_valid/main.dart';
 
 void main() {
@@ -20,27 +19,48 @@ class Produtos extends StatefulWidget {
 class _ProdutosState extends State<Produtos> with AutomaticKeepAliveClientMixin {
   @override
   bool get wantKeepAlive => true;
-  late final Stream<QuerySnapshot> _productsStream;
   final _formKey = GlobalKey<FormState>();
   final _nameController = TextEditingController();
   final _categoryController = TextEditingController();
 
-  @override
-  void initState() {
-    super.initState();
-    print('Lendo da coleção products...');
-    _productsStream = FirebaseFirestore.instance.collection('products').snapshots();
-    print('Leitura concluída.');
-  }
-
   void addProduct(String name, String category) {
-    print('Adicionando produto...');
     FirebaseFirestore.instance.collection('products').add({
       'name': name,
       'expiryDate': Timestamp.fromDate(DateTime.now().add(Duration(days: category == 'Rebaixa' ? 30 : category == 'Atenção' ? 180 : 365))),
       'category': category,
     });
-    print('Produto adicionado.');
+  }
+
+  void deleteProduct(String id) {
+    FirebaseFirestore.instance.collection('products').doc(id).delete();
+  }
+
+  Widget buildListView(AsyncSnapshot<QuerySnapshot> snapshot, String category) {
+    if (snapshot.hasError) {
+      return Text('Algo deu errado');
+    }
+
+    if (snapshot.connectionState == ConnectionState.waiting) {
+      return Text("Carregando");
+    }
+
+    return ListView(
+      children: snapshot.data!.docs.map((DocumentSnapshot document) {
+        Map<String, dynamic> data = document.data()! as Map<String, dynamic>;
+        if (data['category'] == category) {
+          return ListTile(
+            title: Text(data['name']),
+            subtitle: Text('Categoria: ${data['category']}'),
+            trailing: IconButton(
+              icon: Icon(Icons.delete),
+              onPressed: () => deleteProduct(document.id),
+            ),
+          );
+        } else {
+          return Container();
+        }
+      }).toList(),
+    );
   }
 
   @override
@@ -68,166 +88,25 @@ class _ProdutosState extends State<Produtos> with AutomaticKeepAliveClientMixin 
         ),
         body: Column(
           children: [
-            Form(
-              key: _formKey,
-              child: Column(
-                children: <Widget>[
-                  TextFormField(
-                    controller: _nameController,
-                    decoration: InputDecoration(labelText: 'Nome do Produto'),
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Por favor, insira o nome do produto';
-                      }
-                      return null;
-                    },
-                  ),
-                  TextFormField(
-                    controller: _categoryController,
-                    decoration: InputDecoration(labelText: 'Categoria'),
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Por favor, insira a categoria';
-                      }
-                      return null;
-                    },
-                  ),
-                  ElevatedButton(
-                    onPressed: () {
-                      if (_formKey.currentState!.validate()) {
-                        addProduct(_nameController.text, _categoryController.text);
-                      }
-                    },
-                    child: Text('Adicionar Produtos', style: TextStyle(fontWeight: FontWeight.bold)),
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.green[800],
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30))
-                  ),
-                  ),
-                ],
-              ),
-            ),
             Expanded(
               child: TabBarView(
                 children: [
                   StreamBuilder<QuerySnapshot>(
-                    stream: ProdutoController().listar().snapshots(),
+                    stream: FirebaseFirestore.instance.collection('products').snapshots(),
                     builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
-                      switch (snapshot.connectionState) {
-                        case ConnectionState.none:
-                          return Center(
-                            child: Text('Não foi possível conectar.'),
-                          );
-                        case ConnectionState.waiting:
-                          return const Center(
-                            child: CircularProgressIndicator(),
-                          );
-                          default:
-                            final dados = snapshot.requireData;
-                            if (dados.size > 0) {
-                              return ListView.builder(
-                                itemCount: dados.size,
-                                itemBuilder: (context, index) {
-                                  String id = dados.docs[index].id;
-                                  dynamic item = dados.docs[index].data();
-                                  return Card(
-                                    child: ListTile(
-                                      leading: Icon(Icons.description),
-                                      title: Text(item['titulo']),
-                                      subtitle: Text(item['descricao']),
-                        ),
-                      );
-                    }
-                  );
-                }else {
-                  return Center(
-                    child: Text('Nenhum produto encontrada.'),
-                  );
-                }
-                      }
-                    }
-                  ),
-
-                  StreamBuilder<QuerySnapshot>(
-                    stream: _productsStream,
-                    builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
-                      if (snapshot.hasError) {
-                        return Text('Algo deu errado');
-                      }
-
-                      if (snapshot.connectionState == ConnectionState.waiting) {
-                        return Text("Carregando");
-                      }
-
-                      return ListView(
-                        children: snapshot.data!.docs.map((DocumentSnapshot document) {
-                          Map<String, dynamic> data = document.data()! as Map<String, dynamic>;
-                          if (data['category'] == 'Atenção') {
-                            return ListTile(
-                              title: Text(data['name']),
-                              subtitle: Text('Categoria: ${data['category']}'),
-                            );
-                          } else {
-                            return Container();
-                          }
-                        }).toList(),
-                      );
-                      
-                    },
-                  ),
-                  
-                  StreamBuilder<QuerySnapshot>(
-                    stream: _productsStream,
-                    builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
-                      if (snapshot.hasError) {
-                        return Text('Algo deu errado');
-                      }
-
-                      if (snapshot.connectionState == ConnectionState.waiting) {
-                        return Text("Carregando");
-                      }
-
-                      return ListView(
-                        children: snapshot.data!.docs.map((DocumentSnapshot document) {
-                          Map<String, dynamic> data = document.data()! as Map<String, dynamic>;
-                          if (data['category'] == 'Seguro') {
-                            return ListTile(
-                              title: Text(data['name']),
-                              subtitle: Text('Categoria: ${data['category']}'),
-                            );
-                            
-                          } else {
-                            return Container();
-                          }
-                        }).toList(),
-                      );
+                      return buildListView(snapshot, 'Rebaixa');
                     },
                   ),
                   StreamBuilder<QuerySnapshot>(
-                    stream: _productsStream,
+                    stream: FirebaseFirestore.instance.collection('products').snapshots(),
                     builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
-                      if (snapshot.hasError) {
-                        return Text('Algo deu errado');
-                      }
-
-                      if (snapshot.connectionState == ConnectionState.waiting) {
-                        return Text("Carregando");
-                      }
-
-                      return ListView(
-                        children: snapshot.data!.docs.map((DocumentSnapshot document) {
-                          Map<String, dynamic> data = document.data()! as Map<String, dynamic>;
-                          if (data['category'] == 'Rebaixa') {
-                            return ListTile(
-                              title: Text(data['name']),
-                              subtitle: Text('Categoria: ${data['category']}'),
-                            );
-                            
-                          } else {
-                            return Container();
-                          }
-                        }).toList(),
-                      );
+                      return buildListView(snapshot, 'Atenção');
+                    },
+                  ),
+                  StreamBuilder<QuerySnapshot>(
+                    stream: FirebaseFirestore.instance.collection('products').snapshots(),
+                    builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+                      return buildListView(snapshot, 'Seguro');
                     },
                   ),
                 ],
@@ -236,14 +115,67 @@ class _ProdutosState extends State<Produtos> with AutomaticKeepAliveClientMixin 
           ],
         ),
         floatingActionButton: FloatingActionButton(
-          onPressed: () => addProduct('Nome do Produto', 'Rebaixa'), // Altere esses valores conforme necessário.
+          onPressed: () => showDialog(
+            context: context,
+            builder: (BuildContext context) {
+              return AlertDialog(
+                title: Text('Adicionar Produto'),
+                content: Form(
+                  key: _formKey,
+                  child: Column(
+                    children: <Widget>[
+                      TextFormField(
+                        controller: _nameController,
+                        decoration: InputDecoration(labelText: 'Nome do Produto'),
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Por favor, insira o nome do produto';
+                          }
+                          return null;
+                        },
+                      ),
+                      TextFormField(
+                        controller: _categoryController,
+                        decoration: InputDecoration(labelText: 'Categoria'),
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Por favor, insira a categoria';
+                          }
+                          return null;
+                        },
+                      ),
+                    ],
+                  ),
+                ),
+                actions: <Widget>[
+                  TextButton(
+                    child: Text('Cancelar'),
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                  ),
+                  TextButton(
+                    child: Text('Adicionar'),
+                    onPressed: () {
+                      if (_formKey.currentState!.validate()) {
+                        addProduct(_nameController.text, _categoryController.text);
+                        _nameController.clear();
+                        _categoryController.clear();
+                        Navigator.of(context).pop();
+                      }
+                    },
+                  ),
+                ],
+              );
+            },
+          ),
           tooltip: 'Adicionar Produto',
-           child: Icon(
-              Icons.add,
-              color: Colors.white,
-            ),
-            backgroundColor: Colors.green[800],
-          )
+          child: Icon(
+            Icons.add,
+            color: Colors.white,
+          ),
+          backgroundColor: Colors.green[800],
+        ),
       ),
     );
   }
