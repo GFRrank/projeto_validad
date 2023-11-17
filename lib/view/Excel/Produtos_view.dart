@@ -2,15 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:projeto_valid/main.dart';
 
-void main() {
-  runApp(MaterialApp(
-    theme: ThemeData(
-      brightness: Brightness.light,
-    ),
-    home: Produtos(),
-  ));
-}
-
 class Produtos extends StatefulWidget {
   @override
   _ProdutosState createState() => _ProdutosState();
@@ -22,12 +13,25 @@ class _ProdutosState extends State<Produtos> with AutomaticKeepAliveClientMixin 
   final _formKey = GlobalKey<FormState>();
   final _nameController = TextEditingController();
   final _categoryController = TextEditingController();
+  final _descriptionController = TextEditingController();
+  final _priceController = TextEditingController();
+  final _quantityController = TextEditingController();
+  final _storeController = TextEditingController();
+  final _lotController = TextEditingController();
+  final _codeController = TextEditingController();
+  bool _lotePressed = false;
 
-  void addProduct(String name, String category) {
+  void addProduct(String name, String category, String description, String price, String quantity, String store, String lot, String code) {
     FirebaseFirestore.instance.collection('products').add({
       'name': name,
       'expiryDate': Timestamp.fromDate(DateTime.now().add(Duration(days: category == 'Rebaixa' ? 30 : category == 'Atenção' ? 180 : 365))),
       'category': category,
+      'description' : description,
+      'price' : price,
+      'quantity' : quantity,
+      'store' : store,
+      'lot' : lot,
+      'code' : code,
     });
   }
 
@@ -55,6 +59,7 @@ class _ProdutosState extends State<Produtos> with AutomaticKeepAliveClientMixin 
               icon: Icon(Icons.delete),
               onPressed: () => deleteProduct(document.id),
             ),
+            onTap: () => Navigator.pushNamed(context , 'detalhes'),
           );
         } else {
           return Container();
@@ -114,67 +119,157 @@ class _ProdutosState extends State<Produtos> with AutomaticKeepAliveClientMixin 
             ),
           ],
         ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () => showDialog(
-            context: context,
-            builder: (BuildContext context) {
-              return AlertDialog(
-                title: Text('Adicionar Produto'),
-                content: Form(
-                  key: _formKey,
-                  child: Column(
-                    children: <Widget>[
-                      TextFormField(
-                        controller: _nameController,
-                        decoration: InputDecoration(labelText: 'Nome do Produto'),
-                        validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return 'Por favor, insira o nome do produto';
-                          }
-                          return null;
-                        },
-                      ),
-                      TextFormField(
-                        controller: _categoryController,
-                        decoration: InputDecoration(labelText: 'Categoria'),
-                        validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return 'Por favor, insira a categoria';
-                          }
-                          return null;
-                        },
-                      ),
-                    ],
-                  ),
+        floatingActionButton: Stack(
+          children: <Widget>[
+            Positioned(
+              bottom: 10.0,
+              right: 10.0,
+              child: FloatingActionButton(
+                heroTag: 'btn1',
+                onPressed: () {
+                  Navigator.pushNamed(context, 'detalhes');
+                },
+                tooltip: 'Detalhes do Produto',
+                child: Icon(
+                  Icons.info,
+                  color: Colors.white,
                 ),
-                actions: <Widget>[
-                  TextButton(
-                    child: Text('Cancelar'),
-                    onPressed: () {
-                      Navigator.of(context).pop();
-                    },
-                  ),
-                  TextButton(
-                    child: Text('Adicionar'),
-                    onPressed: () {
-                      if (_formKey.currentState!.validate()) {
-                        addProduct(_nameController.text, _categoryController.text);
-                        _nameController.clear();
-                        _categoryController.clear();
-                        Navigator.of(context).pop();
-                      }
-                    },
-                  ),
-                ],
-              );
-            },
-          ),
-          tooltip: 'Adicionar Produto',
-          child: Icon(
-            Icons.add,
-            color: Colors.white,
-          ),
-          backgroundColor: Colors.green[800],
+                backgroundColor: Colors.green[800],
+              ),
+            ),
+            Positioned(
+              bottom: 80.0,
+              right: 10.0,
+              child: FloatingActionButton(
+                heroTag: 'btn2',
+                onPressed: () => showDialog(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return AlertDialog(
+                      title: Text('Adicionar Produto'),
+                      content: Form(
+                        key: _formKey,
+                        child: Column(
+                          children: <Widget>[TextFormField(
+                              controller: _nameController,
+                              decoration: InputDecoration(labelText: 'Nome do Produto'),
+                              validator: (value) {
+                                if (value == null || value.isEmpty) {
+                                  return 'Por favor, insira o nome do produto';
+                                }
+                                return null;
+                              },
+                            ),
+                            TextFormField(
+                              controller: _categoryController,
+                              decoration: InputDecoration(labelText: 'Categoria'),
+                              validator: (value) {
+                                if (value == null || value.isEmpty) {
+                                  return 'Por favor, insira a categoria';
+                                }
+                                return null;
+                              },
+                            ),
+                            TextFormField(
+                              controller: _descriptionController,
+                              decoration: InputDecoration(labelText: 'Descrição'),
+                              validator: (value) {
+                                if (value == null || value.isEmpty) {
+                                  return 'Por favor, insira a descrição';
+                                }
+                                return null;
+                              },
+                            ),
+                            TextFormField(
+                              controller: _priceController,
+                              decoration: InputDecoration(labelText: 'Preço'),
+                              validator: (value) {
+                                if (value == null || value.isEmpty) {
+                                  return 'Por favor, insira o preço';
+                                }
+                                return null;
+                              },
+                            ),
+                            TextFormField(
+                              controller: _quantityController,
+                              decoration: InputDecoration(labelText: 'Quantidade'),
+                              validator: (value) {
+                                if (value == null || value.isEmpty) {
+                                  return 'Por favor, insira a quantidade';
+                                }
+                                return null;
+                              },
+                            ),
+                            TextFormField(
+                              controller: _storeController,
+                              decoration: InputDecoration(labelText: 'Loja'),
+                              validator: (value) {
+                                if (value == null || value.isEmpty) {
+                                  return 'Por favor, insira a loja';
+                                }
+                                return null;
+                              },
+                            ),
+                            TextFormField(
+                              controller: _lotController,
+                              decoration: InputDecoration(labelText: 'Lote'),
+                              validator: (value) {
+                                if (value == null || value.isEmpty) {
+                                  return 'Por favor, insira o lote';
+                                }
+                                return null;
+                              },
+                            ),
+                            TextFormField(
+                              controller: _codeController,
+                              decoration: InputDecoration(labelText: 'Código'),
+                              validator: (value) {
+                                if (value == null || value.isEmpty) {
+                                  return 'Por favor, insira o código';
+                                }
+                                return null;
+                              },
+                            ),
+                          ],
+                        ),
+                      ),
+                      actions: <Widget>[
+                        TextButton(
+                          child: Text('Cancelar'),
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                          },
+                        ),
+                        TextButton(
+                          child: Text('Adicionar'),
+                          onPressed: () {
+                            if (_formKey.currentState!.validate()) {
+                              addProduct(_nameController.text, _categoryController.text, _descriptionController.text, _priceController.text, _quantityController.text, _storeController.text, _lotController.text, _codeController.text);
+                              _nameController.clear();
+                              _categoryController.clear();
+                              _descriptionController.clear();
+                              _priceController.clear();
+                              _quantityController.clear();
+                              _storeController.clear();
+                              _lotController.clear();
+                              _codeController.clear();
+                              Navigator.of(context).pop();
+                            }
+                          },
+                        ),
+                      ],
+                    );
+                  },
+                ),
+                tooltip: 'Adicionar Produto',
+                child: Icon(
+                  Icons.add,
+                  color: Colors.white,
+                ),
+                backgroundColor: Colors.green[800],
+              ),
+            ),
+          ],
         ),
       ),
     );

@@ -74,13 +74,6 @@ class HubScreen extends StatelessWidget {
             ), 
             const SizedBox(height: 10), // Adicione espaço entre os itens
             ListTile(
-              title: const Text('Cadastro Estoque', style: TextStyle(fontSize: 18)), // Aumente o tamanho do texto aqui
-              onTap: () {
-                Navigator.pushNamed(context, 'cadastro_estoque');
-              },
-            ), 
-            const SizedBox(height: 10), // Adicione espaço entre os itens
-            ListTile(
               title: const Text('Estoque', style: TextStyle(fontSize: 18)), // Aumente o tamanho do texto aqui
               onTap: () {
                 Navigator.pushNamed(context, 'produtos');
@@ -104,6 +97,12 @@ class HubScreen extends StatelessWidget {
               title: const Text('Excel', style: TextStyle(fontSize: 18)), // Aumente o tamanho do texto aqui
               onTap: () {
                 Navigator.pushNamed(context, 'excel');
+              },
+            ), 
+             ListTile(
+              title: const Text('Detalhes', style: TextStyle(fontSize: 18)), // Aumente o tamanho do texto aqui
+              onTap: () {
+                Navigator.pushNamed(context, 'detalhes');
               },
             ), 
              ListTile(

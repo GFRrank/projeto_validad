@@ -6,13 +6,13 @@ import 'package:projeto_valid/view/Login/EsqueceuSenha_view.dart';
 import 'package:projeto_valid/view/Cadastro/Cadastro_Func_view.dart';
 import 'package:projeto_valid/view/Sobre/HubScreen_view.dart';
 import 'package:projeto_valid/view/Sobre/Inicio_view.dart';
-import 'package:projeto_valid/view/Cadastro/Cadastro_Esto_view.dart';
 import 'package:projeto_valid/view/Excel/Produtos_view.dart';
 import 'package:projeto_valid/view/Sobre/Sobre_view.dart';
 import 'package:projeto_valid/view/Cadastro/Autentifica%C3%A7%C3%A3o_view.dart';
 import 'package:projeto_valid/view/Sobre/Configura%C3%A7%C3%B5es_view.dart';
 import 'package:projeto_valid/view/Excel/ExcelDataViewer_view.dart';
 import 'package:projeto_valid/view/APIs/Whatsapp_view.dart';
+import 'package:projeto_valid/view/Excel/Detalhes_view.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 
@@ -63,13 +63,13 @@ class MyApp extends StatelessWidget {
         'esqueceu_senha': (context) => EsqueceuSenhaView(), // Adicione a rota para a tela EsqueceuSenhaView
         'hub_screen': (context) => const HubScreen(), // Adicione a rota para a tela HubScreenView
         'cadastro_func': (context) => CadastroFunc(), // Adicione esta linha
-        'cadastro_estoque': (context) =>  CadastroEstoque(), // Adicione esta linha
         'produtos': (context) =>  Produtos(), // Adicione esta linha
         'sobre': (context) =>  Sobre(), // Adicione esta linha
         'configuraçoes': (context) =>  Config(), // Adicione esta linha
         'autent': (context) =>  Autenticacao(), // Adicione esta 
         'excel': (context) =>  ExcelDataViewer(), // Adicione esta linha
         'whatsapp': (context) => WhatsappView(), // Adicione esta linha
+        'detalhes': (context) => Detalhes(), // Adicione esta linha
       },
     );
   }
