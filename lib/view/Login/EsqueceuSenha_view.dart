@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:projeto_valid/view/Login/Login_view.dart';
 import 'package:projeto_valid/main.dart';
-
+import '../../controller/login_controller.dart';
 
 class EsqueceuSenhaView extends StatelessWidget {
   final TextEditingController _emailController = TextEditingController();
 
-  EsqueceuSenhaView({super.key});
+  EsqueceuSenhaView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -22,26 +22,37 @@ class EsqueceuSenhaView extends StatelessWidget {
           children: <Widget>[
             TextField(
               controller: _emailController,
-              decoration: const InputDecoration(labelText: 'Digite seu email'),
+              decoration: InputDecoration(
+                labelText: 'Digite seu email',
+                contentPadding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 15.0),
+              ),
               keyboardType: TextInputType.emailAddress,
             ),
             const SizedBox(height: 20),
-          
-            ElevatedButton(
-              style: ElevatedButton.styleFrom( backgroundColor: Colors.green[800],
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50))),
-              onPressed: () {
-                // Lógica para enviar email de redefinição de senha
-                String email = _emailController.text;
-                // Implemente a lógica para enviar o email de redefinição de senha aqui
-                // Você pode chamar uma API ou fazer qualquer outra ação necessária
-                // após o usuário inserir seu email para redefinição de senha.
-              },
-              child: const Text('Enviar Email de Redefinição'),
-            ),
+            buildStyledButton(context),
           ],
         ),
       ),
+    );
+  }
+
+  Widget buildStyledButton(BuildContext context) {
+    return ElevatedButton(
+      style: ElevatedButton.styleFrom(
+        backgroundColor: Colors.green[800],
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),
+      ),
+      onPressed: () {
+        if (_emailController.text.isEmpty) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text('Digite o email')),
+          );
+        } else {
+          LoginController().esqueceuSenha(context, _emailController.text);
+          Navigator.pushNamed(context, 'inicio');
+        }
+      },
+      child: const Text('Enviar Email de Redefinição'),
     );
   }
 }

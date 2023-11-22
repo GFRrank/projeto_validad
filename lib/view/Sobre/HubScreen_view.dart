@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:projeto_valid/controller/login_controller.dart';
 import 'package:projeto_valid/main.dart';
 
 class HubScreen extends StatelessWidget {
@@ -50,7 +51,10 @@ class HubScreen extends StatelessWidget {
                 children: <Widget>[
                   Container(
                     child: SizedBox(
-                      child: Image.asset("assets/gfrlogo.png", color: Colors.white, scale: 1.5), // Aumente o tamanho da logo diminuindo o valor do scale
+                      child: Image.asset("assets/gfrlogo.png",
+                          color: Colors.white,
+                          scale:
+                              1.5), // Aumente o tamanho da logo diminuindo o valor do scale
                     ),
                   ),
                   const SizedBox(width: 10),
@@ -67,53 +71,89 @@ class HubScreen extends StatelessWidget {
               ),
             ),
             ListTile(
-              title: const Text('Cadastro Funcionários', style: TextStyle(fontSize: 18)), // Aumente o tamanho do texto aqui
+              title: const Text('Cadastro Funcionários',
+                  style: TextStyle(
+                      fontSize: 18)), // Aumente o tamanho do texto aqui
               onTap: () {
                 Navigator.pushNamed(context, 'cadastro_func');
               },
-            ), 
+            ),
             const SizedBox(height: 10), // Adicione espaço entre os itens
             ListTile(
-              title: const Text('Estoque', style: TextStyle(fontSize: 18)), // Aumente o tamanho do texto aqui
+              title: const Text('Estoque',
+                  style: TextStyle(
+                      fontSize: 18)), // Aumente o tamanho do texto aqui
               onTap: () {
                 Navigator.pushNamed(context, 'produtos');
               },
-            ), 
+            ),
             const SizedBox(height: 10), // Adicione espaço entre os itens
             ListTile(
-              title: const Text('Configurações', style: TextStyle(fontSize: 18)), // Aumente o tamanho do texto aqui
+              title: const Text('Configurações',
+                  style: TextStyle(
+                      fontSize: 18)), // Aumente o tamanho do texto aqui
               onTap: () {
                 Navigator.pushNamed(context, 'configuraçoes');
               },
-            ), 
+            ),
             const SizedBox(height: 10), // Adicione espaço entre os itens
             ListTile(
-              title: const Text('Sobre', style: TextStyle(fontSize: 18)), // Aumente o tamanho do texto aqui
+              title: const Text('Sobre',
+                  style: TextStyle(
+                      fontSize: 18)), // Aumente o tamanho do texto aqui
               onTap: () {
                 Navigator.pushNamed(context, 'sobre');
               },
-            ), 
-             ListTile(
-              title: const Text('Excel', style: TextStyle(fontSize: 18)), // Aumente o tamanho do texto aqui
+            ),
+            ListTile(
+              title: const Text('Excel',
+                  style: TextStyle(
+                      fontSize: 18)), // Aumente o tamanho do texto aqui
               onTap: () {
                 Navigator.pushNamed(context, 'excel');
               },
-            ), 
-             ListTile(
-              title: const Text('Detalhes', style: TextStyle(fontSize: 18)), // Aumente o tamanho do texto aqui
+            ),
+            ListTile(
+              title: const Text('Detalhes',
+                  style: TextStyle(
+                      fontSize: 18)), // Aumente o tamanho do texto aqui
               onTap: () {
                 Navigator.pushNamed(context, 'detalhes');
               },
-            ), 
-             ListTile(
-              title: const Text('Whatsapp', style: TextStyle(fontSize: 18)), // Aumente o tamanho do texto aqui
+            ),
+            ListTile(
+              title: const Text('Whatsapp',
+                  style: TextStyle(
+                      fontSize: 18)), // Aumente o tamanho do texto aqui
               onTap: () {
                 Navigator.pushNamed(context, 'whatsapp');
               },
-            ),   
+            ),
+
+            FutureBuilder<String>(
+              future: LoginController().usuarioLogado(),
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.done) {
+                  return Directionality(
+                      textDirection: TextDirection.rtl,
+                      child: TextButton.icon(
+                        style: TextButton.styleFrom(
+                          foregroundColor: Colors.black,
+                          textStyle: TextStyle(fontSize: 24),
+                        ),
+                        onPressed: () {
+                          Navigator.pushNamed(context, 'configuraçoes');
+                        },
+                        icon: const Icon(Icons.manage_accounts, size: 26),
+                        label: Text(snapshot.data.toString()),
+                      ));
+                }
+                return const Text('');
+              },
+            )
           ],
         ),
-      ),    
+      ),
     );
   }
 }

@@ -3,19 +3,9 @@ import 'package:flutter/services.dart';
 import 'package:projeto_valid/controller/login_controller.dart';
 import 'package:projeto_valid/main.dart';
 
-
 class Autenticacao extends StatefulWidget {
- 
   @override
   _AutenticacaoState createState() => _AutenticacaoState();
-  var txtEmail = TextEditingController();
-  var txtNome = TextEditingController();
-  var txtPhone = TextEditingController();
-  var txtSenha = TextEditingController();
-  var txtID    = TextEditingController();
-  var txtCargo = TextEditingController();
-  var txtSetor = TextEditingController();
-  var txtLoja =  TextEditingController();
 }
 
 class _AutenticacaoState extends State<Autenticacao> {
@@ -46,11 +36,15 @@ class _AutenticacaoState extends State<Autenticacao> {
                   controller: _idController,
                   inputFormatters: [LengthLimitingTextInputFormatter(10)],
                   decoration: const InputDecoration(
-                    labelText: 'ID',
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.elliptical(50, 50))
-                    )
-                  ),
+                      labelText: 'ID',
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.elliptical(50, 50)))),
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Por favor, insira um ID válido.';
+                    }
+                    return null;
+                  },
                 ),
               ),
               const SizedBox(
@@ -67,36 +61,39 @@ class _AutenticacaoState extends State<Autenticacao> {
                     ),
                   ),
                   value: CargoSelecionado,
-                  items: Cargos.map((cargo) => DropdownMenuItem(
-                    value: cargo,
-                    child: Text(cargo),
-                    )).toList(),
-                  onChanged: (cargo) => setState(() => CargoSelecionado = cargo), 
-                  ),
+                  items: Cargos
+                      .map((cargo) => DropdownMenuItem(
+                            value: cargo,
+                            child: Text(cargo),
+                          ))
+                      .toList(),
+                  onChanged: (cargo) => setState(() => CargoSelecionado = cargo),
+                ),
               ),
               const SizedBox(
                 height: 30,
               ),
-              SizedBox(height: 20),
-
+              SizedBox(
+                height: 20,
+              ),
               SizedBox(
                 height: 45,
                 width: 150,
-                child:ElevatedButton(
+                child: ElevatedButton(
                   onPressed: () async {
-                   /* if (_formKey.currentState!.validate()) {
+                    if (_formKey.currentState!.validate()) {
                       bool idExiste = await LoginController().verificarID(_idController.text);
                       if (idExiste) {
-                        LoginController().autenticar(context, _idController.text, CargoSelecionado);*/
+                        LoginController().autenticar(context, _idController.text, CargoSelecionado);
                         Navigator.pushNamed(context, 'login');
-                     /* } 
-                    //}*/
+                      } 
+                    }
                   },
-                  child: Text('Autenticar', style: TextStyle(fontWeight: FontWeight.bold)),
+                  child: Text('Autenticar',
+                      style: TextStyle(fontWeight: FontWeight.bold)),
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.green[800],
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30))
-                  ),
+                      backgroundColor: Colors.green[800],
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30))),
                 ),
               ),
             ],
