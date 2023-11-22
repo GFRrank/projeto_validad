@@ -6,17 +6,6 @@ import 'package:projeto_valid/main.dart';
 class Autenticacao extends StatefulWidget {
   @override
   _AutenticacaoState createState() => _AutenticacaoState();
-<<<<<<< HEAD
-=======
-  var txtEmail = TextEditingController();
-  var txtNome = TextEditingController();
-  var txtPhone = TextEditingController();
-  var txtSenha = TextEditingController();
-  var txtID = TextEditingController();
-  var txtCargo = TextEditingController();
-  var txtSetor = TextEditingController();
-  var txtLoja = TextEditingController();
->>>>>>> c29ee9ceed72ee8841946b72de4aac400301e040
 }
 
 class _AutenticacaoState extends State<Autenticacao> {
@@ -49,7 +38,6 @@ class _AutenticacaoState extends State<Autenticacao> {
                   decoration: const InputDecoration(
                       labelText: 'ID',
                       border: OutlineInputBorder(
-<<<<<<< HEAD
                           borderRadius: BorderRadius.all(Radius.elliptical(50, 50)))),
                   validator: (value) {
                     if (value == null || value.isEmpty) {
@@ -57,10 +45,6 @@ class _AutenticacaoState extends State<Autenticacao> {
                     }
                     return null;
                   },
-=======
-                          borderRadius:
-                              BorderRadius.all(Radius.elliptical(50, 50)))),
->>>>>>> c29ee9ceed72ee8841946b72de4aac400301e040
                 ),
               ),
               const SizedBox(
@@ -77,7 +61,6 @@ class _AutenticacaoState extends State<Autenticacao> {
                     ),
                   ),
                   value: CargoSelecionado,
-<<<<<<< HEAD
                   items: Cargos
                       .map((cargo) => DropdownMenuItem(
                             value: cargo,
@@ -85,32 +68,19 @@ class _AutenticacaoState extends State<Autenticacao> {
                           ))
                       .toList(),
                   onChanged: (cargo) => setState(() => CargoSelecionado = cargo),
-=======
-                  items: Cargos.map((cargo) => DropdownMenuItem(
-                        value: cargo,
-                        child: Text(cargo),
-                      )).toList(),
-                  onChanged: (cargo) =>
-                      setState(() => CargoSelecionado = cargo),
->>>>>>> c29ee9ceed72ee8841946b72de4aac400301e040
                 ),
               ),
               const SizedBox(
                 height: 30,
               ),
-<<<<<<< HEAD
               SizedBox(
                 height: 20,
               ),
-=======
-              SizedBox(height: 20),
->>>>>>> c29ee9ceed72ee8841946b72de4aac400301e040
               SizedBox(
                 height: 45,
                 width: 150,
                 child: ElevatedButton(
                   onPressed: () async {
-<<<<<<< HEAD
                     if (_formKey.currentState!.validate()) {
                       bool idExiste = await LoginController().verificarID(_idController.text);
                       if (idExiste) {
@@ -134,26 +104,12 @@ class _AutenticacaoState extends State<Autenticacao> {
                         );
                       }
                     }
-=======
-                    /* if (_formKey.currentState!.validate()) {
-                      bool idExiste = await LoginController().verificarID(_idController.text);
-                      if (idExiste) {
-                        LoginController().autenticar(context, _idController.text, CargoSelecionado);*/
-                    Navigator.pushNamed(context, 'login');
-                    /* } 
-                    //}*/
->>>>>>> c29ee9ceed72ee8841946b72de4aac400301e040
                   },
                   child: Text('Autenticar',
                       style: TextStyle(fontWeight: FontWeight.bold)),
                   style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.green[800],
-<<<<<<< HEAD
                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30))),
-=======
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(30))),
->>>>>>> c29ee9ceed72ee8841946b72de4aac400301e040
                 ),
               ),
             ],
