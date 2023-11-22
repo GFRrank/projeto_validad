@@ -84,9 +84,25 @@ class _AutenticacaoState extends State<Autenticacao> {
                     if (_formKey.currentState!.validate()) {
                       bool idExiste = await LoginController().verificarID(_idController.text);
                       if (idExiste) {
-                        LoginController().autenticar(context, _idController.text, CargoSelecionado);
+                        // Ajuste na chamada da função autenticar
+                        LoginController().autenticar(
+                          context,
+                          CargoSelecionado ?? 'Funcionário Comum',
+                          _idController.text,
+                          '', // Adicionei espaços vazios para representar os campos que faltam
+                          '',
+                          '',
+                        );
                         Navigator.pushNamed(context, 'login');
-                      } 
+                      } else {
+                        // ID não encontrado
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text('ID não encontrado.'),
+                            duration: Duration(seconds: 2),
+                          ),
+                        );
+                      }
                     }
                   },
                   child: Text('Autenticar',
