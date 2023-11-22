@@ -129,6 +129,7 @@ class HubScreen extends StatelessWidget {
                 Navigator.pushNamed(context, 'whatsapp');
               },
             ),
+
             FutureBuilder<String>(
               future: LoginController().usuarioLogado(),
               builder: (context, snapshot) {
@@ -138,16 +139,16 @@ class HubScreen extends StatelessWidget {
                       child: TextButton.icon(
                         style: TextButton.styleFrom(
                           foregroundColor: Colors.black,
-                          textStyle: TextStyle(fontSize: 12),
+                          textStyle: TextStyle(fontSize: 24),
                         ),
                         onPressed: () {
                           Navigator.pushNamed(context, 'configuraçoes');
                         },
-                        icon: const Icon(Icons.manage_accounts, size: 16),
+                        icon: const Icon(Icons.manage_accounts, size: 26),
                         label: Text(snapshot.data.toString()),
                       ));
                 }
-                return Text('');
+                return const Text('');
               },
             )
           ],

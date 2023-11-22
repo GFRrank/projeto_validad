@@ -3,9 +3,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import '../view/Login/util.dart';
 
-    
-    class LoginController {
-    criarConta(context, nome, email, senha, id, telefone, loja, cargo, setor) {
+class LoginController {
+  criarConta(context, nome, email, senha, id, telefone, loja, cargo, setor) {
     FirebaseAuth.instance
         .createUserWithEmailAndPassword(
       email: email,
@@ -13,7 +12,7 @@ import '../view/Login/util.dart';
     )
         .then((resultado) {
       // Armazenar o NOME do usuário e outras informações no Firestore
-      FirebaseFirestore.instance.collection('usuarios').doc(resultado.user!.uid).set(
+      FirebaseFirestore.instance.collection("usuarios").add(
         {
           'uid': resultado.user!.uid,
           'nome': nome,
@@ -23,7 +22,12 @@ import '../view/Login/util.dart';
           'cargo': cargo,
           'setor': setor,
         },
-      );
+      ).then((value) {
+        print('Dados adicionados com sucesso: $value');
+      }).catchError((error) {
+        print('Erro ao adicionar dados: $error');
+      });
+      print('Depois de adicionar dados ao Firestore');
 
       sucesso(context, 'Usuário criado com sucesso.');
       Navigator.pop(context);
@@ -62,15 +66,14 @@ import '../view/Login/util.dart';
     });
   }
 
-
-    //
-    //VERIFICA ID
-    //
+  //
+  //VERIFICA ID
+  //
   Future<bool> verificarID(String id) async {
-  final docSnapshot = await FirebaseFirestore.instance.collection('usuarios').doc(id).get();
-  return docSnapshot.exists;
-}
-
+    final docSnapshot =
+        await FirebaseFirestore.instance.collection('usuarios').doc(id).get();
+    return docSnapshot.exists;
+  }
 
   //
   // LOGIN
@@ -91,7 +94,6 @@ import '../view/Login/util.dart';
       }
     });
   }
-
 
   //
   // ESQUECEU A SENHA
@@ -136,6 +138,4 @@ import '../view/Login/util.dart';
     );
     return usuario;
   }
-    }
-
-
+}
