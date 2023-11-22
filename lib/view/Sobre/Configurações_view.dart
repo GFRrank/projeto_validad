@@ -14,7 +14,7 @@ class Config extends StatefulWidget {
 class _ConfigState extends State<Config> {
   bool _notifications = true;
   String _language = 'Português';
-  String _theme = 'Claro'; // Adicionei esta linha
+  String _theme = 'Claro'; 
   bool _lotePressed = false;
 
   @override
@@ -67,7 +67,7 @@ class _ConfigState extends State<Config> {
           ListTile(
             title: Text('Tema do Aplicativo'),
             trailing: DropdownButton<String>(
-              value: _theme, // Alterei esta linha
+              value: _theme, 
               items: <String>['Claro', 'Escuro']
                   .map<DropdownMenuItem<String>>((String value) {
                 return DropdownMenuItem<String>(
@@ -77,7 +77,7 @@ class _ConfigState extends State<Config> {
               }).toList(),
               onChanged: (String? newValue) {
                 setState(() {
-                  _theme = newValue!; // Adicionei esta linha
+                  _theme = newValue!; 
                 });
               },
             ),
