@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:projeto_valid/main.dart';
-import 'package:firebase_database/firebase_database.dart';
+
 
 void main() {
   runApp(MaterialApp(
