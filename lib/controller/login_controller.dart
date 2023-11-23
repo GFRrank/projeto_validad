@@ -4,7 +4,10 @@ import 'package:flutter/material.dart';
 import '../view/Login/util.dart';
 
 class LoginController {
-  criarConta(context, nome, email, senha, id, telefone, loja, cargo, setor) {
+  String? id;
+  String? cargo;
+
+  criarConta(context, nome, email, senha,) {
     FirebaseAuth.instance
         .createUserWithEmailAndPassword(
       email: email,
@@ -12,22 +15,13 @@ class LoginController {
     )
         .then((resultado) {
       // Armazenar o NOME do usuário e outras informações no Firestore
-      FirebaseFirestore.instance.collection("usuarios").add(
+      FirebaseFirestore.instance.collection('usuarios').doc(resultado.user!.uid).set(
         {
           'uid': resultado.user!.uid,
           'nome': nome,
           'id': id,
-          'telefone': telefone,
-          'loja': loja,
-          'cargo': cargo,
-          'setor': setor,
         },
-      ).then((value) {
-        print('Dados adicionados com sucesso: $value');
-      }).catchError((error) {
-        print('Erro ao adicionar dados: $error');
-      });
-      print('Depois de adicionar dados ao Firestore');
+      );
 
       sucesso(context, 'Usuário criado com sucesso.');
       Navigator.pop(context);
@@ -44,15 +38,20 @@ class LoginController {
       }
     });
   }
-
-  //
-  // AUTENTICAR
-  //
-
-  autenticar(context, cargo, id) {
+ //
+ //AUTENTICAR 
+ //
+  void autenticar(context, cargo, id, telefone, loja, setor) {
     FirebaseAuth.instance
         .signInWithEmailAndPassword(email: id, password: cargo)
         .then((value) {
+      // Salva o ID e o cargo após a autenticação bem-sucedida
+      this.id = id;
+      this.cargo = cargo;
+
+      //
+      //VERIFICA SE FOI BEM SUCEDIDO
+      //
       sucesso(context, 'Usuário autenticado com sucesso.');
       Navigator.pushNamed(context, 'hub_screen');
     }).catchError((e) {
@@ -66,18 +65,19 @@ class LoginController {
     });
   }
 
-  //
-  //VERIFICA ID
-  //
+//
+//ID
+//
   Future<bool> verificarID(String id) async {
-    final docSnapshot =
-        await FirebaseFirestore.instance.collection('usuarios').doc(id).get();
+    final docSnapshot = await FirebaseFirestore.instance.collection('usuarios').doc(id).get();
     return docSnapshot.exists;
   }
 
-  //
-  // LOGIN
-  //
+
+//
+//LOGIN
+//
+
   login(context, email, senha) {
     FirebaseAuth.instance
         .signInWithEmailAndPassword(email: email, password: senha)
@@ -94,10 +94,9 @@ class LoginController {
       }
     });
   }
-
-  //
-  // ESQUECEU A SENHA
-  //
+ //
+ //ESQUECEU SENHA
+ //
   esqueceuSenha(context, String email) {
     if (email.isNotEmpty) {
       FirebaseAuth.instance.sendPasswordResetEmail(email: email);
@@ -108,23 +107,14 @@ class LoginController {
     Navigator.pop(context);
   }
 
-  //
-  // LOGOUT
-  //
   logout() {
     FirebaseAuth.instance.signOut();
   }
 
-  //
-  // ID do Usuário Logado
-  //
   idUsuario() {
     return FirebaseAuth.instance.currentUser!.uid;
   }
 
-  //
-  // NOME do Usuário Logado
-  //
   Future<String> usuarioLogado() async {
     var usuario = '';
     await FirebaseFirestore.instance
