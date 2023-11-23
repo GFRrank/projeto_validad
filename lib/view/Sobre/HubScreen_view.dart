@@ -130,7 +130,7 @@ class HubScreen extends StatelessWidget {
               },
             ),
 
-            FutureBuilder<String>(
+            /*FutureBuilder<String>(
               future: LoginController().usuarioLogado(),
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.done) {
@@ -150,7 +150,7 @@ class HubScreen extends StatelessWidget {
                 }
                 return const Text('');
               },
-            )
+            )*/
           ],
         ),
       ),
